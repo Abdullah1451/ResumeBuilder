@@ -1,0 +1,68 @@
+.right {
+    width: 75vw;
+    max-height: 93vh;
+    font-family: "Lora", serif;
+    overflow-y: auto;
+}
+
+right p {
+    margin: 0;
+}
+
+.pageContainer {
+    /* overflow-y: scroll; */
+    max-height: 100vh;
+}
+
+.pageContainer::-webkit-scrollbar,.right::-webkit-scrollbar  {
+    display: none !important;
+}
+
+.right .page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm #7b7d7d;
+    width: 21cm;
+    min-height: 29.7cm;
+}
+
+/* @media print {
+    @page {
+        margin: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    /* .right {
+        min-height: 100vh;
+    } */
+
+   /* .page * {
+        visibility: visible;
+    }
+
+    .page {
+        position: fixed;
+        left: 10px;
+        top: -50px; 
+        margin-top: 1rem;
+        /* display: block; */
+        /* page-break-after:auto; 
+    }
+} */
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .right {
+        height: 10vh;
+        font-family: "Lora", serif;
+    }
+
+    .right .page {}
+}

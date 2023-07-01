@@ -1,0 +1,133 @@
+.main-container {
+    width: 90%;
+    margin-bottom: 100px;
+
+}
+
+@media print {
+    @page {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .main-container:first-child {
+        margin-top: -30px;
+    }
+
+    .end_line {
+        border: 2px solid black;
+        margin-left: 0;
+        width: 87% !important;
+        position: fixed;
+        bottom: 0;
+        display: block !important;
+    }
+}
+
+.resumeContainer {
+    padding-top: 20px;
+    padding-left: 60px;
+    margin-right: -40px;
+}
+
+.personalInfo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 15px;
+    padding-bottom: 10px;
+}
+
+.user_name {
+    margin-right: 10px;
+}
+
+.user_name_h1 {
+    margin-bottom: 0;
+}
+
+.user_role {
+    font-size: 10pt;
+}
+
+.user_phone,
+.user_email {
+    margin-right: 10px,
+}
+
+.topIcon {
+    font-size: 17px;
+    margin-right: 15px;
+    color: #444;
+    cursor: pointer;
+}
+
+.career_objective {
+    padding-top: 10px;
+    line-height: 1.5;
+}
+
+.marginBottom {
+    margin-bottom: -10px;
+}
+
+.subHeading {
+    color: rgb(0, 0, 0);
+}
+
+.user_data_container {
+    display: flex;
+}
+
+.leftResume {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.educationDetail{
+    margin-top:30px;
+    line-height: 1;
+}
+
+.skillList {
+    text-align: start;
+}
+
+.user_skill {
+    margin: 10px 0;
+}
+
+.skill {
+    margin: 0 5px;
+}
+
+.skillLevel {
+    margin: 0;
+}
+
+.projects_list {
+    text-align: left;
+    line-height: 1.5;
+}
+
+.project_name {
+    font-weight: 500;
+    margin: 0;
+}
+
+.project_description {
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.project_link {
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.end_line {
+    display: none;
+}
