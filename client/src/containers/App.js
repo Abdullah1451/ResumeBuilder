@@ -7,8 +7,8 @@ import Home from "../pages/home/Home";
 import "./app.css";
 import ResumeContextProvider from "../contexts/ResumeContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ResumeEditing from "../pages/resume_editing/ResumeEditing";
 import { TemplateProvider } from '../contexts/TemplateContext';
+import UserDetails from "../pages/userDetails/UserDetails";
 
 
 function App() {
@@ -26,14 +26,13 @@ function App() {
             <Route path="/login"> <Login /> </Route>
             
             <TemplateProvider>
-              {/* <Route path={['/templates', '/template/:id']} > <ResumeEditing /> </Route> */}
-              <Route path='/template/:id' > <ResumeEditing /> </Route>
+              <Route path='/template/:id' > <UserDetails /> </Route>
               <Route path='/templates' > <Templates /> </Route>
             </TemplateProvider>
           </Switch>
 
         </BrowserRouter>
-        {/* <Right /> */}
+
       </ResumeContextProvider>
     </div>
   );

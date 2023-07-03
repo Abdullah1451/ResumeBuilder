@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect, useState } from 'react'
+import React, { forwardRef, useContext } from 'react'
 import { ResumeContext } from '../../contexts/ResumeContext';
 import myTempStyle from './template1.module.css'
 

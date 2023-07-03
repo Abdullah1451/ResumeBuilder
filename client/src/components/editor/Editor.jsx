@@ -12,15 +12,10 @@ function Editor() {
     const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage } = useContext(ResumeContext);
 
     useEffect(() => {
-        console.log(resumeInformation)
-        console.log(values)
+        // console.log(resumeInformation)
+        // console.log(values)
         saveOnSessionStorage();
-        // setActiveSectionKey(activeSectionKey)
-    }, [resumeInformation])
-
-
-    // const sections = props.sections;
-    // const resumeInformation = resumeInformation;
+    }, [resumeInformation, saveOnSessionStorage])
 
     const [activeSectionKey, setActiveSectionKey] = useState(
         Object.keys(sections)[0]

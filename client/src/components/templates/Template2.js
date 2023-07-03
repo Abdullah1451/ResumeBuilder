@@ -1,27 +1,12 @@
-import React, { forwardRef, useContext, useEffect, useRef, useState } from 'react'
-// import exampleResume from '../../utils/fake_data';
-
-import myTempStyle from './template2.module.css'
-// import useIsOverflow from '../../hooks/useIsOverflow'
-// import { useTemplates } from '../../contexts/TemplateContext';
+import React, { forwardRef, useContext} from 'react'
 import { ResumeContext } from '../../contexts/ResumeContext';
 
+import myTempStyle from './template2.module.css'
 
 
 const Template2 = forwardRef(function (props, ref) {
 
-    const [resume, setResume] = useState(null);
-    const { content, control, contentFake, resumeInformation, sections } = useContext(ResumeContext);
-
-    //Resume Details
-    useEffect(() => {
-        if (control) {
-            setResume(contentFake)
-        } else {
-            setResume(content)
-        }
-    }, [control])
-
+    const { resumeInformation, sections } = useContext(ResumeContext);
 
     return (
         <div ref={ref} >

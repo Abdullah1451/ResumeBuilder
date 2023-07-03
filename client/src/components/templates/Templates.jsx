@@ -1,16 +1,13 @@
 import React from 'react';
-// import style from "../../components/Left/Left.module.css";
 import { Link } from 'react-router-dom';
-
-import logo from "../../assets/default.png";
 import thumbn from "../../assets/templateA.png";
 import thumbn2 from "../../assets/template1.png";
 import thumbn3 from "../../assets/template2.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { useTemplates } from '../../contexts/TemplateContext';
 
 import style from './templates.module.css';
-import { useTemplates } from '../../contexts/TemplateContext';
 
 
 function Templates() {
@@ -30,12 +27,6 @@ function Templates() {
 
     return (
         <div className={style.left}>
-            {/* <div className={style.headerLeft}>
-                <Link to="/" style={{ textAlign: "left" }}>
-                    <img src={logo} alt="logo" className={style.img2} />
-                </Link>
-            </div> */}
-            {/* <hr className={style.hr2} /> */}
             <h1 className={style.templatesH1}>Templates</h1>
             <div className={style.cards}>
                 <div className={style.templateCard}>

@@ -1,12 +1,11 @@
 import { Button, Form, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import "./authentication.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
   const onFinish = async (values) => {
     setLoading(true);
     console.log(values)

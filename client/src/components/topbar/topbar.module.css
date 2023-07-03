@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fcfcfc;
+}
+
+.container {
+  /* max-width: 1700px; */
+  margin: 0 auto;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #fef7e5;
+  position: relative;
+}
+
+.logo {}
+
+.menu_icon {
+  display: none;
+}
+
+.login {
+  color: #1a91f0 !important;
+  -webkit-transition: color .15s;
+  transition: color -5.85s;
+}
+
+.signup {
+  border-radius: 4px;
+  border-width: 0;
+  color: white !important;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600 !important;
+  padding: 14px 24px;
+  text-align: center;
+  background-color: #1a91f0;
+}
+
+.nav_elements {}
+
+.nav_elements ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: center;
+}
+
+.nav_elements ul li:not(:last-child) {
+  margin-right: 40px;
+}
+
+.nav_elements ul a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2f234f;
+  text-decoration: none;
+}
+
+.vertical_separator {
+  background-color: black;
+  height: 16px;
+  width: 1px;
+}
+
+.nav_elements ul a.active {
+  color: #574c4c;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav_elements ul a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #574c4c;
+}
+
+.img2 {
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+
+@media (max-width: 1700px) {
+
+  .container {
+    padding: 0 90px;
+  }
+
+  .nav_elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+
+@media (max-width: 1500px) {
+
+  .container {
+    padding: 0 80px;
+  }
+
+  .nav_elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 1300px) {
+
+  .container {
+    padding: 0 65px;
+  }
+
+  .nav_elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+
+@media (max-width: 1100px) {
+
+  .container {
+    padding: 0 50px;
+  }
+
+  .nav_elements ul li:not(:last-child) {
+    margin-right: 25px;
+  }
+}
+
+
+@media (max-width: 1000px) {
+
+  .container {
+    padding: 0 35px;
+  }
+
+  .nav_elements ul li:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+
+@media (max-width: 930px) {
+
+  .container {
+    padding: 0 30px;
+  }
+
+  .menu_icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav_elements {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: #fef7e5;
+    width: 0px;
+    height: 94vh;
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .nav_elements.active {
+    width: 100%;
+    z-index: 1;
+  }
+
+  .nav_elements ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav_elements ul li {
+    margin-right: unset;
+    margin-top: 22px;
+  }
+
+  .vertical_separator_li{
+    display: none;
+  }
+
+
+}
+
+
+
+/* .top {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(204, 240, 237);
+  position: sticky;
+  display: flex;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  z-index: 999;
+}
+
+.topLeft,
+.topRight {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topCenter {
+  flex: 6;
+}
+
+.topIcon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #444;
+  cursor: pointer;
+}
+
+.topImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.img2 {
+  width: 120px;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.topList {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topListItem {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.topSearchIcon {
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.link{
+  text-decoration: none;
+} */
