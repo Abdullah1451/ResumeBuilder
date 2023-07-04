@@ -21,7 +21,7 @@ paperContainer p {
     background: white;
     display: block;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 0.5cm;
     box-shadow: 0 0 0.5cm #7b7d7d;
     font-family: "Lora", serif !important;
@@ -29,38 +29,41 @@ paperContainer p {
     min-height: 29.7cm;
 }
 
-/* @media print {
-    @page {
-        margin: 0;
-    }
-
-    body * {
-        visibility: hidden;
-    }
-
-    /* .right {
-        min-height: 100vh;
-    } */
-
-   /* .page * {
-        visibility: visible;
-    }
-
-    .page {
-        position: fixed;
-        left: 10px;
-        top: -50px; 
-        margin-top: 1rem;
-        /* display: block; */
-        /* page-break-after:auto; 
-    }
-} */
-
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media (max-width: 1400px) {
     .paperContainer {
-        height: 10vh;
-        font-family: "Lora", serif;
+        width: -webkit-fill-available;
+        max-height: 100vh;
+        margin-bottom: 20px;
+    }
+
+    .pageContainer{
+        max-height: 100%;
+    }
+
+}
+
+@media (max-width: 840px){
+    .page{
+        width: 17.7cm !important;
+    }
+}
+
+@media (max-width: 700px){
+    .page{
+        width: 15cm !important;
+    }
+}
+
+@media (max-width: 600px){
+    .page{
+        width: 13.12cm !important;
+    }
+}
+
+@media (max-width: 540px){
+    .page{
+        width: 11cm !important;
     }
 }

@@ -79,6 +79,7 @@ function UserDetails() {
                         />
                     </div>
                 </div>
+                <hr />
                 <div>
                     <Editor />
                 </div>

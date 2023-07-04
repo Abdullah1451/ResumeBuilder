@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+textarea {
+    border: 1px solid #c3c3c3;
+    outline: none;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+textarea:hover {
+    border: 1px solid #adadad;
+}
+
+textarea:focus {
+    border: 1px solid #239ce2;
+}

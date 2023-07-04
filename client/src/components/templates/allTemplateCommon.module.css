@@ -1,0 +1,112 @@
+.name_font_size {
+    font-size: 24pt ;
+}
+
+.heading_font_size {
+    font-size: 14pt ;
+}
+
+.title_font_size {
+    font-size: 10pt ;
+}
+
+.general_font_size {
+    font-size: 12pt ;
+}
+
+
+@media print {
+    .name_font_size {
+        font-size: 24pt !important;
+    }
+
+    .heading_font_size {
+        font-size: 14pt !important;
+    }
+
+    .title_font_size {
+        font-size: 10pt !important;
+    }
+
+    .general_font_size {
+        font-size: 12pt !important;
+    }
+}
+
+@media (max-width: 840px) {
+
+    .name_font_size {
+        font-size: 24pt;
+    }
+
+    .heading_font_size {
+        font-size: 12pt ;
+    }
+
+    .title_font_size {
+        font-size: 10pt ;
+    }
+
+    .general_font_size {
+        font-size: 10pt ;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .name_font_size {
+        font-size: 22pt;
+    }
+
+    .heading_font_size {
+        font-size: 11pt ;
+    }
+
+    .title_font_size {
+        font-size: 8.5pt ;
+    }
+
+    .general_font_size {
+        font-size: 8.5pt ;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .name_font_size {
+        font-size: 20pt;
+    }
+
+    .heading_font_size {
+        font-size: 9pt ;
+    }
+
+    .title_font_size {
+        font-size: 7.2pt ;
+    }
+
+    .general_font_size {
+        font-size: 7.2pt ;
+    }
+}
+
+
+@media (max-width: 540px) {
+
+    .name_font_size {
+        font-size: 18pt;
+    }
+
+    .heading_font_size {
+        font-size: 8pt ;
+    }
+
+    .title_font_size {
+        font-size: 6pt ;
+    }
+
+    .general_font_size {
+        font-size: 6.1pt ;
+    }
+}

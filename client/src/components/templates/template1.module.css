@@ -11,6 +11,12 @@
     font-family: "Lora", serif !important;
   }
 
+  .resumeContainer {
+    padding-top: 20px !important;
+    padding-left: 60px !important;
+    margin-right: -40px !important;
+  }
+
   @page {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -67,7 +73,7 @@
 }
 
 .topIcon {
-  font-size: 17px;
+  font-size: 17px !important;
   margin-right: 15px;
   color: #444;
   cursor: pointer;
@@ -136,160 +142,35 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 800px) {
-  .main-container {
-    width: 80%;
-  }
-
-  .name {
-    font-size: 1.6rem !important;
-  }
-
-  .phone {
-    font-size: 0.7rem !important;
-  }
-
-  .email {
-    font-size: 0.7rem !important;
-  }
-
-  .about {
-    font-size: 0.9rem !important;
-  }
-
-  .user_data_container>.leftResume>div {
-    padding: 0;
-  }
-
-  .career_objective>h2 {
-    font-size: 1rem !important;
-  }
-
-  .career_objective>p {
-    font-size: 0.7rem !important;
-  }
-
-  .education>h2 {
-    font-size: 1rem !important;
-  }
-
-  .education>p {
-    font-size: 0.7rem !important;
-  }
-
-  .achievements>h2 {
-    font-size: 1rem !important;
-  }
-
-  .achievements li {
-    font-size: 0.7rem !important;
-  }
-
-  .skills>h2 {
-    font-size: 1rem !important;
-  }
-
-  .skills li {
-    font-size: 0.7rem !important;
-  }
-
-  .projects>h2 {
-    font-size: 1rem !important;
-  }
-
-  .projects li {
-    font-size: 0.7rem !important;
-  }
-
-  .projects p {
-    font-size: 0.7rem !important;
-  }
-
-  .projects {
-    padding: 0 2px 10px 10px !important;
-  }
-
-  .experience>h2 {
-    font-size: 1rem !important;
-  }
-
-  .experience li {
-    font-size: 0.7rem !important;
-  }
-
-  .experience p {
-    font-size: 0.7rem !important;
-  }
-
-  .experience {
-    padding: 0 2px 10px 10px !important;
-  }
-
-  .right {
-    padding: 0 2px 10px 10px !important;
+/* Responsive */
+@media (max-width: 840px){
+  .resumeContainer {
+    padding-top: 20px;
+    padding-left: 50px;
+    margin-right: -40px;
   }
 }
 
-@media screen and (max-width: 800px) {
-  .user_data_container>.leftResume>div {
-    padding: 0;
-  }
-
-  .career_objective>h2 {
-    font-size: 1rem !important;
-  }
-
-  .career_objective>p {
-    font-size: 0.7rem !important;
-  }
-
-  .education>h2 {
-    font-size: 1rem !important;
-  }
-
-  .education>p {
-    font-size: 0.7rem !important;
-  }
-
-  .achievements>h2 {
-    font-size: 1rem !important;
-  }
-
-  .achievements li {
-    font-size: 0.7rem !important;
-  }
-
-  .skills>h2 {
-    font-size: 1rem !important;
-  }
-
-  .skills li {
-    font-size: 0.7rem !important;
-  }
-
-  .projects>h2 {
-    font-size: 1rem !important;
-  }
-
-  .projects li {
-    font-size: 0.7rem !important;
-  }
-
-  .projects p {
-    font-size: 0.7rem !important;
-  }
-
-  .projects {
-    padding: 0 2px 10px 10px !important;
-  }
-
-  .right {
-    padding: 0 2px 10px 10px !important;
+@media (max-width: 700px){
+  .resumeContainer {
+    padding-top: 20px;
+    padding-left: 40px;
+    margin-right: -40px;
   }
 }
 
-@media screen and (max-width: 800px) {
-  .main-container {
-    width: 95%;
+@media (max-width: 600px){
+  .resumeContainer {
+    padding-top: 20px;
+    padding-left: 30px;
+    margin-right: -30px;
+  }
+}
+
+@media (max-width: 540px){
+  .resumeContainer {
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-right: -20px;
   }
 }

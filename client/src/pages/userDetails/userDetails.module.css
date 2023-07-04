@@ -11,10 +11,10 @@
 }
 
 
-.container{
+.container {
     overflow-y: auto;
     max-height: 93.5vh;
-    width: 52vw;
+    width: 63vw;
     background-color: white;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
@@ -24,28 +24,74 @@
     display: none !important;
 }
 
-.allButton{
+.allButton {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
 }
 
-.button{
+.button {
     color: white !important;
     background-color: #1a91f0 !important;
     border-radius: 10px !important;
     font-size: 13px !important;
 }
 
-.example:hover{
+.example:hover {
     background-color: #19639f !important;
 }
 
-.clearAll:hover{
-    background-color:rgb(250, 51, 51) !important;
+.clearAll:hover {
+    background-color: rgb(250, 51, 51) !important;
 }
 
-.download:hover{
+.download:hover {
     background-color: rgb(34, 169, 34) !important;
+}
+
+@media (max-width: 1540px) {
+
+    .container {
+        width: 58vw;
+    }
+}
+
+@media (max-width: 1470px) {
+
+    .container {
+        width: 52vw;
+    }
+}
+
+@media (max-width: 1400px) {
+
+    .resume_editing_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .container {
+        overflow-y: visible;
+        width: fit-content;
+        max-height: 100%;
+    }
+}
+
+@media (max-width: 930px) {
+
+    .container {
+        width: 85vw;
+    }
+}
+
+@media (max-width: 930px) {
+
+    .container {
+        width: 85vw;
+    }
 }

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { X } from "react-feather";
 import InputControl from "../inputControl/InputControl";
+import TextArea from "../textArea/TextArea";
 
 
 //MY CONTEXT
@@ -12,8 +13,7 @@ function Editor() {
     const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage } = useContext(ResumeContext);
 
     useEffect(() => {
-        // console.log(resumeInformation)
-        // console.log(values)
+        console.log(resumeInformation)
         saveOnSessionStorage();
     }, [resumeInformation, saveOnSessionStorage])
 
@@ -68,27 +68,6 @@ function Editor() {
             </div>
             <div className={styles.row}>
                 <InputControl
-                    label="Certificate Link"
-                    placeholder="Enter certificate link"
-                    value={values.certificationLink}
-                    onChange={(event) =>
-                        setValues({
-                            ...values,
-                            certificationLink: event.target.value,
-                        })
-                    }
-                />
-                <InputControl
-                    label="Location"
-                    placeholder="Enter location eg. Remote"
-                    value={values.location}
-                    onChange={(event) =>
-                        setValues({ ...values, location: event.target.value })
-                    }
-                />
-            </div>
-            <div className={styles.row}>
-                <InputControl
                     label="Start Date"
                     type="date"
                     placeholder="Enter start date of work"
@@ -110,20 +89,10 @@ function Editor() {
 
             <div className={styles.column}>
                 <label>Enter work description</label>
-                <InputControl
-                    placeholder="Line 1"
-                    value={values.points ? values.points[0] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 0)}
-                />
-                <InputControl
-                    placeholder="Line 2"
-                    value={values.points ? values.points[1] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 1)}
-                />
-                <InputControl
-                    placeholder="Line 3"
-                    value={values.points ? values.points[2] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 2)}
+                <TextArea
+                    placeholder="description"
+                    value={values.description}
+                    onChange={(event) => setValues({ ...values, description: event.target.value })}
                 />
             </div>
         </div>
@@ -318,6 +287,16 @@ function Editor() {
                     value={values.points ? values.points[3] : ""}
                     onChange={(event) => handlePointUpdate(event.target.value, 3)}
                 />
+                <InputControl
+                    placeholder="Line 5"
+                    value={values.points ? values.points[4] : ""}
+                    onChange={(event) => handlePointUpdate(event.target.value, 4)}
+                />
+                <InputControl
+                    placeholder="Line 6"
+                    value={values.points ? values.points[5] : ""}
+                    onChange={(event) => handlePointUpdate(event.target.value, 5)}
+                />
             </div>
         </div>
     );
@@ -325,41 +304,18 @@ function Editor() {
     const skillsBody = (
         <div className={styles.detail}>
             <div className={styles.column}>
-                <label>List your skills</label>
                 <InputControl
-                    placeholder="skill 1"
-                    value={values.points ? values.points[0] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 0)}
+                    label="Skill"
+                    placeholder="Enter skill eg. MERN, Java"
+                    value={values.skill}
+                    onChange={(event) => setValues({ ...values, skill: event.target.value })}
                 />
+
                 <InputControl
-                    placeholder="skill 2"
-                    value={values.points ? values.points[1] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 1)}
-                />
-                <InputControl
-                    placeholder="skill 3"
-                    value={values.points ? values.points[2] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 2)}
-                />
-                <InputControl
-                    placeholder="skill 4"
-                    value={values.points ? values.points[3] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 3)}
-                />
-                <InputControl
-                    placeholder="skill 5"
-                    value={values.points ? values.points[4] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 4)}
-                />
-                <InputControl
-                    placeholder="skill 6"
-                    value={values.points ? values.points[5] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 5)}
-                />
-                <InputControl
-                    placeholder="skill 7"
-                    value={values.points ? values.points[6] : ""}
-                    onChange={(event) => handlePointUpdate(event.target.value, 6)}
+                    label="Skill Level"
+                    placeholder="skill level"
+                    value={values.skillLevel}
+                    onChange={(event) => setValues({ ...values, skillLevel: event.target.value })}
                 />
             </div>
         </div>
@@ -446,7 +402,7 @@ function Editor() {
                     endDate: values.endDate,
                     companyName: values.companyName,
                     location: values.location,
-                    points: values.points,
+                    description: values.description,
                 };
                 const tempDetails = [...resumeInformation[sections.workExp]?.details];
                 tempDetails[activeDetailIndex] = tempDetail;
@@ -516,13 +472,18 @@ function Editor() {
                 break;
             }
             case sections.skills: {
-                const tempPoints = values.points;
+                const tempDetail = {
+                    skill: values.skill,
+                    skillLevel: values.skillLevel,
+                };
+                const tempDetails = [...resumeInformation[sections.skills]?.details];
+                tempDetails[activeDetailIndex] = tempDetail;
 
                 setResumeInformation((prev) => ({
                     ...prev,
                     [sections.skills]: {
                         ...prev[sections.skills],
-                        points: tempPoints,
+                        details: tempDetails,
                         sectionTitle,
                     },
                 }));
@@ -559,11 +520,12 @@ function Editor() {
 
     const handleAddNew = () => {
         const details = activeInformation?.details;
-        if (!details) return;
+        if (details.length <= 0) return;
+
         const lastDetail = details.slice(-1)[0];
         if (!Object.keys(lastDetail).length) return;
-        details.push({});
 
+        details.push({});
         setResumeInformation((prev) => ({
             ...prev,
             [sections[activeSectionKey]]: {
@@ -595,46 +557,49 @@ function Editor() {
         const activeInfo = resumeInformation[sections[activeSectionKey]];
         setActiveInformation(activeInfo);
         setSectionTitle(sections[activeSectionKey]);
-        setActiveDetailIndex(0);
+        setActiveDetailIndex(activeInfo?.details?.length === 0 ? 0 : activeInfo?.details?.length - 1);
         setValues({
             name: activeInfo?.detail?.name || "",
             overview: activeInfo?.details
-                ? activeInfo.details[0]?.overview || ""
+                ? activeInfo.details[activeDetailIndex]?.overview || ""
                 : "",
-            link: activeInfo?.details ? activeInfo.details[0]?.link || "" : "",
-            certificationLink: activeInfo?.details
-                ? activeInfo.details[0]?.certificationLink || ""
-                : "",
+            link: activeInfo?.details ? activeInfo.details[activeDetailIndex]?.link || "" : "",
             companyName: activeInfo?.details
-                ? activeInfo.details[0]?.companyName || ""
+                ? activeInfo.details[activeDetailIndex]?.companyName || ""
                 : "",
             college: activeInfo?.details
-                ? activeInfo.details[0]?.college || ""
-                : "",
-            location: activeInfo?.details
-                ? activeInfo.details[0]?.location || ""
+                ? activeInfo.details[activeDetailIndex]?.college || ""
                 : "",
             startDate: activeInfo?.details
-                ? activeInfo.details[0]?.startDate || ""
+                ? activeInfo.details[activeDetailIndex]?.startDate || ""
                 : "",
-            endDate: activeInfo?.details ? activeInfo.details[0]?.endDate || "" : "",
+            endDate: activeInfo?.details ? activeInfo.details[activeDetailIndex]?.endDate || "" : "",
             points: activeInfo?.details
-                ? activeInfo.details[0]?.points
-                    ? [...activeInfo.details[0]?.points]
+                ? activeInfo.details[activeDetailIndex]?.points
+                    ? [...activeInfo.details[activeDetailIndex]?.points]
                     : ""
                 : activeInfo?.points
                     ? [...activeInfo.points]
                     : "",
             title: activeInfo?.details
-                ? activeInfo.details[0]?.title || ""
+                ? activeInfo.details[activeDetailIndex]?.title || ""
                 : activeInfo?.detail?.title || "",
             linkedin: activeInfo?.detail?.linkedin || "",
             github: activeInfo?.details
-                ? activeInfo.details[0]?.github || ""
+                ? activeInfo.details[activeDetailIndex]?.github || ""
                 : activeInfo?.detail?.github || "",
             phone: activeInfo?.detail?.phone || "",
             email: activeInfo?.detail?.email || "",
             careerObjective: activeInfo?.detail?.careerObjective || "",
+            skill: activeInfo?.details
+                ? activeInfo.details[activeDetailIndex]?.skill || ""
+                : "",
+            skillLevel: activeInfo?.details
+                ? activeInfo.details[activeDetailIndex]?.skillLevel || ""
+                : "",
+            description: activeInfo?.details
+                ? activeInfo.details[activeDetailIndex]?.description || ""
+                : "",
             summary: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
             other: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
         });
@@ -652,10 +617,7 @@ function Editor() {
         setValues({
             overview: activeInfo.details[activeDetailIndex]?.overview || "",
             link: activeInfo.details[activeDetailIndex]?.link || "",
-            certificationLink:
-                activeInfo.details[activeDetailIndex]?.certificationLink || "",
             companyName: activeInfo.details[activeDetailIndex]?.companyName || "",
-            location: activeInfo.details[activeDetailIndex]?.location || "",
             startDate: activeInfo.details[activeDetailIndex]?.startDate || "",
             endDate: activeInfo.details[activeDetailIndex]?.endDate || "",
             points: activeInfo.details[activeDetailIndex]?.points || "",
@@ -663,6 +625,9 @@ function Editor() {
             linkedin: activeInfo.details[activeDetailIndex]?.linkedin || "",
             github: activeInfo.details[activeDetailIndex]?.github || "",
             college: activeInfo.details[activeDetailIndex]?.college || "",
+            description: activeInfo.details[activeDetailIndex]?.description || "",
+            skill: activeInfo.details[activeDetailIndex]?.skill || "",
+            skillLevel: activeInfo.details[activeDetailIndex]?.skillLevel || "",
         });
     }, [activeDetailIndex]);
 
@@ -690,41 +655,57 @@ function Editor() {
                 />
 
                 <div className={styles.chips}>
-                    {activeInformation?.details
-                        ? activeInformation?.details?.map((item, index) => (
-                            <div
-                                className={`${styles.chip} ${activeDetailIndex === index ? styles.active : ""
-                                    }`}
-                                key={item.title + index}
-                                onClick={() => setActiveDetailIndex(index)}
-                            >
-                                <p>
-                                    {sections[activeSectionKey]} {index + 1}
-                                </p>
-                                <X
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        handleDeleteDetail(index);
-                                    }}
-                                />
-                            </div>
-                        ))
-                        : ""}
-                    {activeInformation?.details &&
-                        activeInformation?.details?.length > 0 ? (
-                        <div className={styles.new} onClick={handleAddNew}>
-                            +New
+                    {
+                        activeInformation?.details ?
+                            (activeInformation?.details.length <= 1 &&
+                                <div
+                                    className={`${styles.chip} ${styles.active}`}
+                                >
+                                    <p>
+                                        {sections[activeSectionKey]} {1}
+                                    </p>
+                                </div>
+                            ) : ""
+
+                    }
+                    {
+                        activeInformation?.details &&
+
+                        (activeInformation?.details.length > 1 &&
+                            activeInformation?.details?.map((item, index) => (
+                                <div
+                                    className={`${styles.chip} ${activeDetailIndex === index ? styles.active : ""
+                                        }`}
+                                    key={item.title + index}
+                                    onClick={() => setActiveDetailIndex(index)}
+                                >
+                                    <p>
+                                        {sections[activeSectionKey]} {index + 1}
+                                    </p>
+                                    <X
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            handleDeleteDetail(index);
+                                        }}
+                                    />
+                                </div>
+                            ))
+                        )
+                    }
+
+                    {
+                        activeInformation?.details &&
+                        <div div className={styles.new} onClick={handleAddNew}>
+                            +Add New
                         </div>
-                    ) : (
-                        ""
-                    )}
+                    }
                 </div>
 
                 {generateBody()}
 
                 <button className={styles.save_button} onClick={handleSubmission}>Save</button>
             </div>
-        </div>
+        </div >
     );
 }
 

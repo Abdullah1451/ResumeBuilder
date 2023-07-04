@@ -49,7 +49,7 @@ const ResumeContextProvider = (props) => {
         [sections.skills]: {
           id: sections.skills,
           sectionTitle: sections.skills,
-          points: [],
+          details: [],
         },
         [sections.achievement]: {
           id: sections.achievement,
@@ -118,7 +118,7 @@ const ResumeContextProvider = (props) => {
     [sections.skills]: {
       id: sections.skills,
       sectionTitle: sections.skills,
-      points: [],
+      details: [],
     },
     [sections.achievement]: {
       id: sections.achievement,
