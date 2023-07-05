@@ -93,6 +93,7 @@ body {
   width: 120px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 
