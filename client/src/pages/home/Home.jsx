@@ -9,7 +9,7 @@ function Home() {
     return (
         <div className={style.container}>
             <div className={style.upper}>
-                <div className={style.upper_text}>
+                <div className={`${style.upper_text} ${style.row}`}>
                     <p className={style.heading}>
                         A <span>Resume</span> that stands out!
                     </p>
@@ -17,7 +17,7 @@ function Home() {
                         Make your own resume. <span>It's free</span>
                     </p>
                 </div>
-                <div className={style.upper_img}>
+                <div className={`${style.upper_img} ${style.row}`}>
                     <img src={resumeSvg} alt="Resume" />
                 </div>
             </div>

@@ -12,10 +12,25 @@ function Editor() {
     //MY CONTEXT
     const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage } = useContext(ResumeContext);
 
+    //Window size detection
+    const [windowSize, setWindowSize] = useState(window.innerWidth);
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     useEffect(() => {
         console.log(resumeInformation)
         saveOnSessionStorage();
     }, [resumeInformation, saveOnSessionStorage])
+
 
     const [activeSectionKey, setActiveSectionKey] = useState(
         Object.keys(sections)[0]
@@ -46,7 +61,7 @@ function Editor() {
 
     const workExpBody = (
         <div className={styles.detail}>
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Title"
                     placeholder="Enter title eg. Frontend developer"
@@ -66,7 +81,7 @@ function Editor() {
                     }
                 />
             </div>
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Start Date"
                     type="date"
@@ -99,7 +114,7 @@ function Editor() {
     );
     const projectBody = (
         <div className={styles.detail}>
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Title"
                     value={values.title}
@@ -117,7 +132,7 @@ function Editor() {
                     setValues({ ...values, overview: event.target.value })
                 }
             />
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Deployed Link"
                     value={values.link}
@@ -157,7 +172,7 @@ function Editor() {
     );
     const educationBody = (
         <div className={styles.detail}>
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Title"
                     value={values.title}
@@ -175,7 +190,7 @@ function Editor() {
                     setValues({ ...values, college: event.target.value })
                 }
             />
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Start Date"
                     type="date"
@@ -243,7 +258,7 @@ function Editor() {
                     }
                 />
             </div>
-            <div className={styles.row}>
+            <div className={windowSize <= 600 ? styles.column : styles.row}>
                 <InputControl
                     label="Linkedin Link"
                     value={values.linkedin}

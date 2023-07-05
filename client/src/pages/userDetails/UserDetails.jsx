@@ -68,7 +68,7 @@ function UserDetails() {
                                 return (
                                     <Button className={`${style.button} ${style.download}`}
                                         variant="contained"
-                                        endIcon={<ArrowDownwardIcon />}
+                                        endIcon={<ArrowDownwardIcon className={style.arrow_svg}/>}
                                     >
                                         Download
                                     </Button>

@@ -96,7 +96,7 @@
 
 .chip p {
     font-weight: 500;
-    line-height: 1.25rem;
+    line-height: 0.9rem;
     color: #fff;
 }
 
@@ -137,10 +137,120 @@
     margin-top: 15px;
 }
 
-@media (max-width: 1400px) {
 
+/* Responsive */
+@media (max-width: 1400px) {
     .container {
         height: 100%;
     }
+}
 
+@media (max-width: 900px) {
+    .chip {
+        font-size: 12pt;
+    }
+
+    .new {
+        font-size: 12pt;
+    }
+
+    chip p{
+        line-height: 0.8rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .chip {
+        font-size: 11pt;
+    }
+
+    .new {
+        font-size: 11pt;
+    }
+
+    chip p{
+        line-height: 0.7rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .chip {
+        font-size: 10pt;
+    }
+
+    .new {
+        font-size: 10pt;
+    }
+
+    chip p{
+        line-height: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container{
+        gap: 20px;
+    }
+
+    .header .section {
+        font-size: 11pt;
+    }
+
+    .body {
+        gap: 15px;
+    }
+
+    .detail .column {
+        gap: 20px;
+    }
+
+    .detail {
+        gap: 20px;
+    }
+
+    .chip {
+        font-size: 9pt;
+    }
+
+    .new {
+        font-size: 9pt;
+    }
+
+    chip p{
+        line-height: 0.5rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .container{
+        gap: 15px;
+    }
+
+    .header .section {
+        font-size: 10pt;
+    }
+
+    .body {
+        gap: 10px;
+    }
+
+    .detail .column {
+        gap: 15px;
+    }
+
+    .detail {
+        gap: 15px;
+    }
+
+    .chip {
+        font-size: 8.5pt;
+    }
+
+    .new {
+        font-size: 8.5pt;
+    }
+
+    chip p{
+        line-height: 0.4rem;
+    }
 }

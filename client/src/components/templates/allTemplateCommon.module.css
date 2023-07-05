@@ -1,21 +1,47 @@
 .name_font_size {
-    font-size: 24pt ;
+    font-size: 24pt;
 }
 
 .heading_font_size {
-    font-size: 14pt ;
+    font-size: 14pt;
 }
 
 .title_font_size {
-    font-size: 10pt ;
+    font-size: 10pt;
 }
 
 .general_font_size {
-    font-size: 12pt ;
+    font-size: 12pt;
 }
 
+.resumeContainer {
+    padding-top: 20px;
+    padding-left: 60px;
+    margin-right: -40px;
+}
+
+.topIcon {
+    font-size: 17px;
+    margin-right: 15px;
+    color: #444;
+    cursor: pointer;
+}
 
 @media print {
+
+    .topIcon {
+        font-size: 17px !important;
+        margin-right: 15px;
+        color: #444;
+        cursor: pointer;
+    }
+
+    .resumeContainer {
+        padding-top: 20px !important;
+        padding-left: 60px !important;
+        margin-right: -40px !important;
+    }
+
     .name_font_size {
         font-size: 24pt !important;
     }
@@ -33,80 +59,180 @@
     }
 }
 
+/* Responsive */
 @media (max-width: 840px) {
+
+    .topIcon {
+        font-size: 15px;
+    }
+
+    .resumeContainer {
+        padding-top: 20px;
+        padding-left: 50px;
+        margin-right: -40px;
+    }
 
     .name_font_size {
         font-size: 24pt;
     }
 
     .heading_font_size {
-        font-size: 12pt ;
+        font-size: 12pt;
     }
 
     .title_font_size {
-        font-size: 10pt ;
+        font-size: 10pt;
     }
 
     .general_font_size {
-        font-size: 10pt ;
+        font-size: 10pt;
     }
 }
 
 @media (max-width: 700px) {
+
+    .topIcon {
+        font-size: 14px;
+    }
+
+    .resumeContainer {
+        padding-top: 20px;
+        padding-left: 40px;
+        margin-right: -40px;
+    }
 
     .name_font_size {
         font-size: 22pt;
     }
 
     .heading_font_size {
-        font-size: 11pt ;
+        font-size: 11pt;
     }
 
     .title_font_size {
-        font-size: 8.5pt ;
+        font-size: 8.5pt;
     }
 
     .general_font_size {
-        font-size: 8.5pt ;
+        font-size: 8.5pt;
     }
 }
 
 
 @media (max-width: 600px) {
 
+    .topIcon {
+        font-size: 13px;
+    }
+
+    .resumeContainer {
+        padding-top: 20px;
+        padding-left: 30px;
+        margin-right: -30px;
+    }
+
     .name_font_size {
         font-size: 20pt;
     }
 
     .heading_font_size {
-        font-size: 9pt ;
+        font-size: 9pt;
     }
 
     .title_font_size {
-        font-size: 7.2pt ;
+        font-size: 7.2pt;
     }
 
     .general_font_size {
-        font-size: 7.2pt ;
+        font-size: 7.2pt;
     }
 }
 
 
 @media (max-width: 540px) {
 
+    .topIcon {
+        font-size: 12px;
+    }
+
+    .resumeContainer {
+        padding-top: 20px;
+        padding-left: 20px;
+        margin-right: -20px;
+    }
+
     .name_font_size {
         font-size: 18pt;
     }
 
     .heading_font_size {
-        font-size: 8pt ;
+        font-size: 8pt;
     }
 
     .title_font_size {
-        font-size: 6pt ;
+        font-size: 6pt;
     }
 
     .general_font_size {
-        font-size: 6.1pt ;
+        font-size: 6.1pt;
+    }
+}
+
+
+@media (max-width: 460px) {
+
+    .topIcon {
+        font-size: 10px;
+    }
+
+    .resumeContainer {
+        padding-top: 10px;
+        padding-left: 20px;
+        margin-right: -20px;
+    }
+
+    .name_font_size {
+        font-size: 16pt;
+    }
+
+    .heading_font_size {
+        font-size: 7pt;
+    }
+
+    .title_font_size {
+        font-size: 5pt;
+    }
+
+    .general_font_size {
+        font-size: 5.1pt;
+    }
+}
+
+@media (max-width: 390px) {
+
+    .topIcon {
+        font-size: 9px;
+    }
+
+    .resumeContainer {
+        padding-top: 10px;
+        padding-left: 15px;
+        margin-right: -15px;
+    }
+
+    .name_font_size {
+        font-size: 14.5pt;
+    }
+
+    .heading_font_size {
+        font-size: 7pt;
+    }
+
+    .title_font_size {
+        font-size: 4.5pt;
+    }
+
+    .general_font_size {
+        font-size: 4.7pt;
     }
 }

@@ -67,3 +67,15 @@ paperContainer p {
         width: 11cm !important;
     }
 }
+
+@media (max-width: 460px){
+    .page{
+        width: 10cm !important;
+    }
+}
+
+@media (max-width: 390px){
+    .page{
+        width: 9cm !important;
+    }
+}

@@ -14,7 +14,7 @@ const Template1 = forwardRef(function (props, ref) {
             {
                 resumeInformation &&
                 <>
-                    <div className={`${myTempStyle.resumeContainer} ${myFontStyle.general_font_size}`} id='resumeContainer'>
+                    <div className={`${myFontStyle.resumeContainer} ${myFontStyle.general_font_size}`} id='resumeContainer'>
                         {
                             resumeInformation[sections.basicInfo] &&
                             <div className={myTempStyle.resumeHeader}>
@@ -26,16 +26,16 @@ const Template1 = forwardRef(function (props, ref) {
 
                                     <div className={myTempStyle.user_contact}>
                                         {resumeInformation[sections.basicInfo].detail.phone && <div className={myTempStyle.user_phone} >
-                                            <p className={myFontStyle.general_font_size}> <i className={`${myTempStyle.topIcon} fas fa-phone-alt fa-xs`}></i> +91{resumeInformation[sections.basicInfo].detail.phone} </p>
+                                            <p className={myFontStyle.general_font_size}> <i className={`${myFontStyle.topIcon} fas fa-phone-alt fa-xs`}></i> +91{resumeInformation[sections.basicInfo].detail.phone} </p>
                                         </div>}
                                         {resumeInformation[sections.basicInfo].detail.email && <div className={myTempStyle.user_email} >
-                                            <p className={myFontStyle.general_font_size}> <i className={`${myTempStyle.topIcon} fas fa-envelope fa-xs`}></i> {resumeInformation[sections.basicInfo].detail.email} </p>
+                                            <p className={myFontStyle.general_font_size}> <i className={`${myFontStyle.topIcon} fas fa-envelope fa-xs`}></i> {resumeInformation[sections.basicInfo].detail.email} </p>
                                         </div>}
                                         {resumeInformation[sections.basicInfo].detail.linkedin && <div className={myTempStyle.user_phone} >
-                                            <p className={myFontStyle.general_font_size}> <i className={`${myTempStyle.topIcon} fab fa-linkedin`}></i> {resumeInformation[sections.basicInfo].detail.linkedin} </p>
+                                            <p className={myFontStyle.general_font_size}> <i className={`${myFontStyle.topIcon} fab fa-linkedin`}></i> {resumeInformation[sections.basicInfo].detail.linkedin} </p>
                                         </div>}
                                         {resumeInformation[sections.basicInfo].detail.github && <div className={myTempStyle.user_phone} >
-                                            <p className={myFontStyle.general_font_size}> <i className={`${myTempStyle.topIcon} fab fa-github`}></i> {resumeInformation[sections.basicInfo].detail.github} </p>
+                                            <p className={myFontStyle.general_font_size}> <i className={`${myFontStyle.topIcon} fab fa-github`}></i> {resumeInformation[sections.basicInfo].detail.github} </p>
                                         </div>}
                                     </div>
                                 </div>

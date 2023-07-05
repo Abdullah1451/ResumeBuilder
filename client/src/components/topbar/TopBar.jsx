@@ -44,10 +44,10 @@ const Navbar = () => {
               <div className={style.vertical_separator}></div>
             </li>
             <li>
-              <NavLink className={style.login} to="/contact">Log In</NavLink>
+              <NavLink className={style.login} to="/login">Log In</NavLink>
             </li>
             <li>
-              <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} to="/contact">Sign Up</NavLink>
+              <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} to="/register">Sign Up</NavLink>
             </li>
           </ul>
         </div>

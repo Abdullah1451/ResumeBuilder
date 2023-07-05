@@ -24,3 +24,17 @@ input:hover {
 input:focus {
     border: 1px solid #239ce2;
 }
+
+
+
+@media (max-width: 600px){
+    .label, input {
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 450px){
+    .label, input {
+        font-size: 10pt;
+    }
+}
