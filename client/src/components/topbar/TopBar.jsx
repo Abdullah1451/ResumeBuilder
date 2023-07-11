@@ -4,10 +4,15 @@ import { NavLink } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import logo from "../../assets/default.png";
+import { useUserContext } from '../../contexts/UserContext';
+
 import style from './topbar.module.css'
+
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false)
+  const { user, logout } = useUserContext();
+
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
@@ -43,12 +48,21 @@ const Navbar = () => {
             <li className={style.vertical_separator_li}>
               <div className={style.vertical_separator}></div>
             </li>
-            <li>
-              <NavLink className={style.login} to="/login">Log In</NavLink>
-            </li>
-            <li>
-              <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} to="/register">Sign Up</NavLink>
-            </li>
+            {user.loginStatus ?
+              <>
+                <li>
+                  <span className={style.login} onClick={logout}>Log Out</span>
+                </li>
+              </> :
+              <>
+                <li>
+                  <NavLink className={style.login} to="/login">Log In</NavLink>
+                </li>
+                <li>
+                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} to="/register">Sign Up</NavLink>
+                </li>
+              </>
+            }
           </ul>
         </div>
       </div>

@@ -67,7 +67,6 @@ const ResumeContextProvider = (props) => {
           detail: "",
         },
       });
-
       saveOnSessionStorage();
     }
   }

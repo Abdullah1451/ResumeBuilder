@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     lastName: { type: String, default: "" },
     email: { type: String, default: "" },
     mobileNumber: { type: String, default: "" },
+    loginData: { type: Boolean, default: "" },
     portfolio: { type: String, default: "" },
     address: { type: String, default: "" },
     carrierObjective: { type: String, default: "" },

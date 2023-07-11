@@ -9,12 +9,14 @@
     "@material-ui/icons": "^4.9.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.6",
+    "@react-oauth/google": "^0.11.0",
     "@react-pdf/renderer": "^3.1.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^5.4.7",
     "axios": "^1.4.0",
+    "crypto-js": "^4.1.1",
     "html2pdf.js": "^0.10.1",
     "libphonenumber-js": "^1.7.50",
     "nodemon": "^2.0.22",
@@ -47,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5002"
+  "proxy": "http://localhost:5002/"
 }

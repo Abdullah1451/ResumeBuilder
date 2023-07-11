@@ -33,6 +33,7 @@ body {
   color: #1a91f0 !important;
   -webkit-transition: color .15s;
   transition: color -5.85s;
+  cursor: pointer;
 }
 
 .signup {

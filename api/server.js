@@ -20,9 +20,11 @@ mongoose
 
 
 const userRoute = require("./routes/userRoute");
+const userLoginDataRoute = require("./routes/userLoginDataRoute");
 const path = require("path");
 
 app.use("/api/user/", userRoute);
+app.use("/api/userlogin/", userLoginDataRoute);
 
 // if (process.env.NODE_ENV === "production") {
 //   app.use("/", express.static("client/build"));
