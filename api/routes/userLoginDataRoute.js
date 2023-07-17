@@ -1,10 +1,12 @@
 const { AES, enc } = require('crypto-js');
 const express = require("express");
+const axios = require("axios");
 const UserLoginData = require("../models/userLoginDataModel");
 const app = express.Router();
 const secretKey = 'resumebuildertest655@gmail.com';
 
-
+const CLIENT_KEY = "967278741aab4a1b098d69edd7e014ff08dc8b2c";
+const CLIENT_ID = "6786c50c201453792949";
 
 const encryptText = (text) => {
     const encryptedText = AES.encrypt(text, secretKey).toString();
@@ -46,7 +48,7 @@ app.post("/login", async (req, res) => {
             if (req.body.password === decryptText(result.password)) {
                 res.send(result);
             }
-            else{
+            else {
                 res.status(401).json("Wrong Password.");
             }
         }
@@ -60,6 +62,35 @@ app.post("/login", async (req, res) => {
         res.status(400).json(error);
     }
 });
+
+
+app.get("/getAccessToken", async (req, res) => {
+    // console.log(req.query)
+
+    const requestBody =
+        `?client_id=${CLIENT_ID}&client_secret=${CLIENT_KEY}&code=${req.query.code}`
+
+        console.log("first")
+        await axios.post('https://github.com/login/oauth/access_token' + requestBody, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => {
+                console.log(response.data)
+                // return response.json();
+            })
+            .then((data) => {
+                console.log(data)
+                // console.log(data)
+                res.json(data)
+            })
+            .catch((error) => {
+                console.log(error)
+                console.error('Error:', error);
+                // Handle the error
+            })
+})
 
 
 module.exports = app;

@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const dbConnect = require("./dbConnect");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
+app.use(cors())
 app.use(express.json());
 const port = process.env.PORT || 5002;
 

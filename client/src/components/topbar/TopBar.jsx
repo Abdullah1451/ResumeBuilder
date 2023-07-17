@@ -11,7 +11,7 @@ import style from './topbar.module.css'
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false)
-  const { user, logout } = useUserContext();
+  const { user, logout, setSignup } = useUserContext();
 
 
   const handleShowNavbar = () => {
@@ -48,7 +48,7 @@ const Navbar = () => {
             <li className={style.vertical_separator_li}>
               <div className={style.vertical_separator}></div>
             </li>
-            {user.loginStatus ?
+            {user?.loginStatus ?
               <>
                 <li>
                   <span className={style.login} onClick={logout}>Log Out</span>
@@ -56,10 +56,10 @@ const Navbar = () => {
               </> :
               <>
                 <li>
-                  <NavLink className={style.login} to="/login">Log In</NavLink>
+                  <NavLink className={style.login} onClick={() => { setSignup(false) }} to="/login">Log In</NavLink>
                 </li>
                 <li>
-                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} to="/register">Sign Up</NavLink>
+                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} onClick={() => { setSignup(true) }} to="/login">Sign Up</NavLink>
                 </li>
               </>
             }

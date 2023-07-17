@@ -9,11 +9,12 @@ paperContainer p {
 }
 
 .pageContainer {
-    max-height: 100vh;
+    /* max-height: 100vh; */
     font-family: "Lora", serif !important;
 }
 
-.pageContainer::-webkit-scrollbar,.paperContainer::-webkit-scrollbar  {
+.pageContainer::-webkit-scrollbar,
+.paperContainer::-webkit-scrollbar {
     display: none !important;
 }
 
@@ -34,48 +35,49 @@ paperContainer p {
 @media (max-width: 1400px) {
     .paperContainer {
         width: -webkit-fill-available;
-        max-height: 100vh;
+        /* max-height: 100vh; */
         margin-bottom: 20px;
     }
 
-    .pageContainer{
+    .pageContainer {
         max-height: 100%;
     }
 
 }
 
-@media (max-width: 840px){
-    .page{
+@media (max-width: 840px) {
+    .page {
         width: 17.7cm !important;
     }
 }
 
-@media (max-width: 700px){
-    .page{
+@media (max-width: 700px) {
+    .page {
         width: 15cm !important;
+        min-height: auto !important;
     }
 }
 
-@media (max-width: 600px){
-    .page{
+@media (max-width: 600px) {
+    .page {
         width: 13.12cm !important;
     }
 }
 
-@media (max-width: 540px){
-    .page{
+@media (max-width: 540px) {
+    .page {
         width: 11cm !important;
     }
 }
 
-@media (max-width: 460px){
-    .page{
+@media (max-width: 460px) {
+    .page {
         width: 10cm !important;
     }
 }
 
-@media (max-width: 390px){
-    .page{
+@media (max-width: 390px) {
+    .page {
         width: 9cm !important;
     }
 }

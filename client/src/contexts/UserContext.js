@@ -10,6 +10,7 @@ export function useUserContext() {
 }
 
 export function UserContext({ children }) {
+    const [signup, setSignup] = useState(false)
     const [user, setUser] = useState({
         loginStatus: false
     })
@@ -72,6 +73,8 @@ export function UserContext({ children }) {
                         }
                     })
                     .then((res) => {
+                        console.log("GOOGLE LOGIN")
+                        console.log(res)
                         login(res.data.email, res.data.id, true);
                     })
                     .catch((err) => console.log(err));
@@ -79,6 +82,12 @@ export function UserContext({ children }) {
         },
         onError: (error) => console.log('Login Failed:', error)
     });
+
+    const responseFacebook = (response) => {
+        console.log("FACEBOOK LOGIN")
+        console.log(response);
+		login(response.email, response.id, true);
+	};
 
     const logout = () => {
         if (user.google_login) {
@@ -99,10 +108,13 @@ export function UserContext({ children }) {
         <Context.Provider value={{
             user,
             setUser,
+            signup,
+            setSignup,
             login,
             logout,
             register,
             googleLogin,
+            responseFacebook,
         }}>
             {children}
         </Context.Provider>

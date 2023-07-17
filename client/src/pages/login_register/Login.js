@@ -1,14 +1,16 @@
-import { Button, Form, Input, message, Spin } from "antd";
+import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 // import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GoogleIcon from '@mui/icons-material/Google';
 import LockIcon from '@mui/icons-material/Lock';
 import { useUserContext } from '../../contexts/UserContext';
+import FacebookLogin from 'react-facebook-login';
 import axios from "axios";
-
+import GitHubLogin from 'react-github-login';
 import style from "./authentication.module.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function Login() {
@@ -19,7 +21,10 @@ function Login() {
 	const [strength, setStrength] = useState('');
 	const [color, setColor] = useState('');
 
-	const { user, googleLogin, googleLogOut, login, register } = useUserContext();
+	const CLIENT_KEY = "967278741aab4a1b098d69edd7e014ff08dc8b2c";
+	const CLIENT_ID = "6786c50c201453792949";
+
+	const { signup, setSignup, login, googleLogin, responseFacebook, register } = useUserContext();
 
 
 	function checkEmail() {
@@ -65,6 +70,51 @@ function Login() {
 	};
 
 
+	// const history = useHistory();	
+	// useEffect(() => {
+	// 	const urlParams = new URLSearchParams(window.location.search);
+	// 	const code = urlParams.get('code');
+	// 	const values = {
+	// 		code: code
+	// 	}
+
+	// 	if (code) {
+	// 		// Exchange the code for an access token
+	// 		console.log(code)
+	// 		async function getAccessToken() {
+	// 			await axios.get("http://localhost:5002/api/userlogin/accessToken", values)
+	// 		}
+	// 		getAccessToken()
+	// 	}
+	// }, []);
+
+
+
+	const handleSuccess = async (res) => {
+		console.log(res.code);
+		async function getAccessToken() {
+			// console.log(values);
+			try {
+				await fetch("api/userlogin/getAccessToken?code=" + res.code, {
+					method: 'GET'
+				})
+				.then((response) => {console.log(response)})
+				.then((data) => {console.log(data)})
+				
+				// console.log(t)
+			} catch (error) {
+				console.log("ERROR")
+				console.log(error)
+			}
+		}
+		getAccessToken()
+	};
+
+	const handleFailure = (response) => {
+		console.error(response);
+		// Handle authentication failure
+	};
+
 	return (
 		<div className={style.auth_parent}>
 			{loading && <Spin size="large" />}
@@ -75,46 +125,124 @@ function Login() {
 				</div>
 				<div className={style.signIn_container}>
 					<div layout="vertical">
-						<h1>Login</h1>
+						<div className={style.sign_in_up}>
+							<div><button className={style.btn_signin_up} onClick={() => { setSignup(true) }}><h1>Register</h1></button></div>
+							<div><button className={style.btn_signin_up} onClick={() => { setSignup(false) }}><h1>Login</h1></button></div>
+						</div>
 						<hr />
-						<div className={style.inputForm}>
-							<div className={style.formInput} name="email" label="email">
-								<i className={style.icon}><AccountCircleIcon /></i>
-								<input className={`${style.inputField} ${style.inputField_inner}`} type="text" placeholder="Email" name="email" value={email} required onChange={(e) => {
-									setEmail(e.target.value)
-									checkEmail()
-								}} />
-								<div id="validationMessage"></div>
-							</div>
-							<div className={style.formInput} name="password" label="Password">
-								<i className={style.icon}><LockIcon /></i>
-								<input className={`${style.inputField} ${style.inputField_inner}`} placeholder="Password" type="password" name="password" value={password} onChange={handlePasswordChange} required />
-								<div style={{ color }}>Strength: {strength}</div>
-							</div>
-							<div className={style.login_register_button}>
-								<button className={style.signIn_btn} onClick={() => {
-									register(email, password)
-								}}>
-									LOGIN
-								</button>
-							</div>
-						</div>
+						{signup ?
+							(
+								<div>
+									<div className={style.inputForm}>
+										<div className={style.formInput} name="email" label="email">
+											<i className={style.icon}><AccountCircleIcon /></i>
+											<input className={`${style.inputField} ${style.inputField_inner}`} type="text" placeholder="Email" name="email" value={email} required onChange={(e) => {
+												setEmail(e.target.value)
+												checkEmail()
+											}} />
+											<div id="validationMessage"></div>
+										</div>
+										<div className={style.formInput} name="password" label="Password">
+											<i className={style.icon}><LockIcon /></i>
+											<input className={`${style.inputField} ${style.inputField_inner}`} placeholder="Password" type="password" name="password" value={password} onChange={handlePasswordChange} required />
+											<div style={{ color }}>Strength: {strength}</div>
+										</div>
+										<div className={style.login_register_button}>
+											<button className={style.signIn_btn} onClick={() => {
+												register(email, password)
+											}}>
+												LOGIN
+											</button>
+										</div>
+									</div>
 
-						<hr style={{
-							width: "85%",
-							margin: "auto",
-						}} />
+									<hr style={{
+										width: "85%",
+										margin: "auto",
+									}} />
+
+									<div className={style.signIn_option}>
+										<div className={style.option_btn} id="google_signIn">
+											<button className={`${style.google_btn} ${style.btn}`} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
+										</div>
+
+										<div className={`${style.option_btn}`} id="facebook_signIn">
+											<FacebookLogin
+												appId="846682357045128"
+												autoLoad={false}
+												fields="name,email,picture"
+												textButton="Facebook"
+												size='small'
+												cssClass={`${style.facebook_btn} ${style.btn}`}
+												icon={`${style.option_border} fa-brands fa-facebook-f`}
+												callback={responseFacebook}
+											/>
+										</div>
+
+										<div className={style.option_btn} id="google_signIn">
+											{/* <button onClick={handleGitHubLogin}>Login with GitHub</button> */}
+											<GitHubLogin
+												clientId={CLIENT_ID}
+												redirectUri="http://localhost:3000/login"
+												onSuccess={handleSuccess}
+												onFailure={handleFailure}
+											/>
+										</div>
+									</div>
+								</div>
+							) : (
+								<div>
+									<div className={style.inputForm}>
+										<div className={style.formInput} name="email" label="email">
+											<i className={style.icon}><AccountCircleIcon /></i>
+											<input className={`${style.inputField} ${style.inputField_inner}`} type="text" placeholder="Email" name="email" value={email} required onChange={(e) => {
+												setEmail(e.target.value)
+												checkEmail()
+											}} />
+											<div id="validationMessage"></div>
+										</div>
+										<div className={style.formInput} name="password" label="Password">
+											<i className={style.icon}><LockIcon /></i>
+											<input className={`${style.inputField} ${style.inputField_inner}`} placeholder="Password" type="password" name="password" value={password} onChange={handlePasswordChange} required />
+											<div style={{ color }}>Strength: {strength}</div>
+										</div>
+										<div className={style.login_register_button}>
+											<button className={style.signIn_btn} onClick={() => {
+												login(email, password)
+											}}>
+												LOGIN
+											</button>
+										</div>
+									</div>
+
+									<hr style={{
+										width: "85%",
+										margin: "auto",
+									}} />
+
+									<div className={style.signIn_option}>
+										<div className={style.option_btn} id="google_signIn">
+											<button className={`${style.google_btn} ${style.btn}`} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
+										</div>
+
+										<div className={`${style.option_btn}`} id="facebook_signIn">
+											<FacebookLogin
+												appId="846682357045128"
+												autoLoad={false}
+												fields="name,email,picture"
+												textButton="Facebook"
+												size='small'
+												cssClass={`${style.facebook_btn} ${style.btn}`}
+												icon={`${style.option_border} fa-brands fa-facebook-f`}
+												callback={responseFacebook}
+											/>
+										</div>
 
 
-						<div className={style.signIn_option}>
-							<div className={style.option_btn} id="google_signIn">
-								<button className={style.btn} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
-							</div>
-
-							<div className={style.option_btn} id="google_signIn">
-								<button className={style.btn} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
-							</div>
-						</div>
+									</div>
+								</div>
+							)
+						}
 
 						{/* <div>
 							<div id="google_signIn">
