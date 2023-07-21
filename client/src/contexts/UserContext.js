@@ -54,6 +54,7 @@ export function UserContext({ children }) {
         try {
             const user = await axios.post("/api/userlogin/register", values);
             console.log("Registeration successfull.");
+            console.log(user)
             // window.location.replace("/templates");
         } catch (err) {
             console.log(err.message)
@@ -83,11 +84,22 @@ export function UserContext({ children }) {
         onError: (error) => console.log('Login Failed:', error)
     });
 
-    const responseFacebook = (response) => {
+    const responseFacebook = async (response) => {
         console.log("FACEBOOK LOGIN")
         console.log(response);
-		login(response.email, response.id, true);
-	};
+        await axios
+            .get(`https://graph.facebook.com/v14.0/me?fields=id,name,email,picture,gender,birthday,location,hometown,friends,likes,age_range,videos,posts,photos,fundraisers,is_guest_user,accounts&access_token=${response.accessToken}`)
+            .then((response) => {
+                const userData = response.data;
+                console.log(userData);
+                // Handle the user data
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle the error
+            });
+        login(response.email, response.id, true);
+    };
 
     const logout = () => {
         if (user.google_login) {

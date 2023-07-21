@@ -91,17 +91,15 @@ function Login() {
 
 
 	const handleSuccess = async (res) => {
-		console.log(res.code);
 		async function getAccessToken() {
-			// console.log(values);
 			try {
-				await fetch("api/userlogin/getAccessToken?code=" + res.code, {
-					method: 'GET'
-				})
-				.then((response) => {console.log(response)})
-				.then((data) => {console.log(data)})
-				
-				// console.log(t)
+				await axios.get("api/userlogin/getAccessToken?code=" + res.code)
+					.then((response) => {
+						console.log(response.data)
+						if (response.data.accessToken)
+							getUserData(response.data.accessToken)
+					})
+					.catch((err) => { console.log(err) })
 			} catch (error) {
 				console.log("ERROR")
 				console.log(error)
@@ -109,6 +107,23 @@ function Login() {
 		}
 		getAccessToken()
 	};
+
+	async function getUserData(accessToken) {
+		try {
+			await axios.get("api/userlogin/getUserData", {
+				params: {
+					accessToken: accessToken,
+				},
+			})
+				.then((response) => {
+					console.log("GITHUB USER DATA")
+					console.log(response.data)
+				})
+				.catch((err) => { console.log(err) })
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	const handleFailure = (response) => {
 		console.error(response);

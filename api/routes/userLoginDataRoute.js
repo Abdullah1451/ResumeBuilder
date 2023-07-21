@@ -65,31 +65,46 @@ app.post("/login", async (req, res) => {
 
 
 app.get("/getAccessToken", async (req, res) => {
-    // console.log(req.query)
 
     const requestBody =
         `?client_id=${CLIENT_ID}&client_secret=${CLIENT_KEY}&code=${req.query.code}`
 
-        console.log("first")
-        await axios.post('https://github.com/login/oauth/access_token' + requestBody, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+    await axios.post('https://github.com/login/oauth/access_token' + requestBody, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => {
+            console.log("GITHUB ACCESS TOKEN")
+            const params = new URLSearchParams(response.data)
+            console.log(params.get('access_token'))
+            res.send({
+                accessToken: params.get('access_token')
+            });
         })
-            .then((response) => {
-                console.log(response.data)
-                // return response.json();
-            })
-            .then((data) => {
-                console.log(data)
-                // console.log(data)
-                res.json(data)
-            })
-            .catch((error) => {
-                console.log(error)
-                console.error('Error:', error);
-                // Handle the error
-            })
+        .catch((error) => {
+            console.log(error)
+            console.error('Error:', error);
+        })
+})
+
+
+app.get("/getUserData", async (req, res) => {
+    console.log(req.query.accessToken)
+    await axios.get("https://api.github.com/user", {
+        headers: {
+            Authorization: `Bearer ${req.query.accessToken}`,
+            Accept: 'application/json'
+        }
+    })
+        .then((response) => {
+            console.log("GITHUB LOGIN")
+            console.log(response.data)
+            res.send(response.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 })
 
 
