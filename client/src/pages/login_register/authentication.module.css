@@ -162,7 +162,13 @@
   background-color: #2d6fe1;
   border: 1px solid #2d6fe1;
   justify-content: space-around;
+}
 
+.github_btn{
+  /* background-color: linear-gradient( #4a4646, #191717); */
+  background-image: linear-gradient(to bottom, #4a4646 , #191717);
+  border: 1px solid #2d6fe1;
+  justify-content: space-around;
 }
 
 .option_border {

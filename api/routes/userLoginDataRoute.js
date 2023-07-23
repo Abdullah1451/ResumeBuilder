@@ -3,20 +3,9 @@ const express = require("express");
 const axios = require("axios");
 const UserLoginData = require("../models/userLoginDataModel");
 const app = express.Router();
-const secretKey = 'resumebuildertest655@gmail.com';
 
 const CLIENT_KEY = "967278741aab4a1b098d69edd7e014ff08dc8b2c";
 const CLIENT_ID = "6786c50c201453792949";
-
-const encryptText = (text) => {
-    const encryptedText = AES.encrypt(text, secretKey).toString();
-    return encryptedText;
-};
-
-const decryptText = (encryptedText) => {
-    const decryptedText = AES.decrypt(encryptedText, secretKey).toString(enc.Utf8);
-    return decryptedText;
-};
 
 app.post("/register", async (req, res) => {
     try {
@@ -28,7 +17,6 @@ app.post("/register", async (req, res) => {
             res.status(500).json("registeration failed. already signed up");
         }
         else {
-            req.body.password = encryptText(req.body.password)
             const newuser = new UserLoginData(req.body);
             await newuser.save();
             res.send("Registration Successfull...");
@@ -39,13 +27,14 @@ app.post("/register", async (req, res) => {
     }
 });
 
+
 app.post("/login", async (req, res) => {
     try {
         const result = await UserLoginData.findOne({
-            email: req.body.email,
+            email: req.body.userData.email,
         });
         if (result) {
-            if (req.body.password === decryptText(result.password)) {
+            if (req.body.userData?.password === result?.password || req.body.userData.loginFrom !== 'web') {
                 res.send(result);
             }
             else {
@@ -75,9 +64,7 @@ app.get("/getAccessToken", async (req, res) => {
         },
     })
         .then((response) => {
-            console.log("GITHUB ACCESS TOKEN")
             const params = new URLSearchParams(response.data)
-            console.log(params.get('access_token'))
             res.send({
                 accessToken: params.get('access_token')
             });
@@ -87,25 +74,5 @@ app.get("/getAccessToken", async (req, res) => {
             console.error('Error:', error);
         })
 })
-
-
-app.get("/getUserData", async (req, res) => {
-    console.log(req.query.accessToken)
-    await axios.get("https://api.github.com/user", {
-        headers: {
-            Authorization: `Bearer ${req.query.accessToken}`,
-            Accept: 'application/json'
-        }
-    })
-        .then((response) => {
-            console.log("GITHUB LOGIN")
-            console.log(response.data)
-            res.send(response.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-})
-
 
 module.exports = app;
