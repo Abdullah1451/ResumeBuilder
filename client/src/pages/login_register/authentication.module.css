@@ -33,14 +33,19 @@
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly
+  text-align: center;
+  margin-top: -20px;
 }
 
 .signIn_container {
   background-color: white;
   padding: 20px;
+}
+
+.vertical {
+  padding-top: 20px;
+  border: solid 2px;
+  padding-bottom: 40px;
 }
 
 .inputField {
@@ -66,19 +71,30 @@
   width: 100%;
 }
 
-.sign_in_up{
+.sign_in_up {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: #f1eded;
+  width: 80%;
+  height: 57px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  margin-top: 5px;
 }
 
-.btn_signin_up{
+.active {
+  background-color: #269d0fe3;
+  color: #fff;
+}
+
+.btn_signin_up {
   border: none;
   cursor: pointer;
-}
-
-.btn_signin_up:hover{
-  background-color: rgb(182, 180, 180)
+  width: 50%;
+  border-radius: 30px;
 }
 
 .inputField_inner {
@@ -132,6 +148,7 @@
   margin-bottom: 0;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
   border-radius: 3px;
   border: 1px solid #0f9d58;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 -1px 4px rgba(151, 159, 175, 0.2);
@@ -139,7 +156,7 @@
 }
 
 
-.btn{
+.btn {
   width: 150px;
   height: 40px;
   color: white;
@@ -153,20 +170,26 @@
 }
 
 .google_btn {
-  background-color: rgb(255, 59, 59);
+  background-image: linear-gradient(to bottom, rgb(238, 121, 121), rgb(255, 57, 57));
   border: 1px solid rgb(255, 59, 59);
   justify-content: space-between;
 }
 
-.facebook_btn{
-  background-color: #2d6fe1;
+.facebook_btn {
+  background-image: linear-gradient(to bottom, #4c83e3, #1f5cc5);
+
   border: 1px solid #2d6fe1;
   justify-content: space-around;
 }
 
-.github_btn{
-  /* background-color: linear-gradient( #4a4646, #191717); */
-  background-image: linear-gradient(to bottom, #4a4646 , #191717);
+.github_btn {
+  background-image: linear-gradient(to bottom, #4a4646, #191717);
+  border: 1px solid #191717;
+  justify-content: space-around;
+}
+
+.linkedin_btn {
+  background-image: linear-gradient(to bottom, #699cf3, #2d6fe1);
   border: 1px solid #2d6fe1;
   justify-content: space-around;
 }
@@ -177,7 +200,7 @@
   padding-right: 5px;
 }
 
-.option_name{
+.option_name {
   margin: auto;
 }
 
@@ -191,12 +214,6 @@
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0.863);
 }
-
-/* .login_register_button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-} */
 
 @media only screen and (max-width: 1000px) {
   .brand {

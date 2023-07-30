@@ -1,13 +1,12 @@
 import React, { createContext, useState } from "react";
 import fakeData from "../utils/fake_data";
+import axios from "axios";
 
 export const ResumeContext = createContext();
 
 const ResumeContextProvider = (props) => {
 
   const [resumeInformationCopy, setResumeInformationCopy] = useState(null)
-
-  //Used to "Right" components know when to use the original state or the fake one (for the "example")
   const [control, setControl] = useState(false);
 
 
@@ -24,6 +23,7 @@ const ResumeContextProvider = (props) => {
   }
 
   function clearAllDetails() {
+    saveResumeData();
     if (!control) {
       setResumeInformation({
         [sections.basicInfo]: {
@@ -68,6 +68,40 @@ const ResumeContextProvider = (props) => {
         },
       });
       saveOnSessionStorage();
+    }
+  }
+
+
+  const saveResumeData = async () => {
+    if (!control && resumeInformation[sections.basicInfo].detail.email) {
+      await axios.post("/api/userlogin/isRegistered", {email: resumeInformation[sections.basicInfo].detail.email})
+      .then(async(response) => {
+        const values = {
+          email: resumeInformation[sections.basicInfo].detail.email,
+          name: resumeInformation[sections.basicInfo].detail.name,
+          mobileNumber: resumeInformation[sections.basicInfo].detail.phone,
+          registeredUser: response.data,
+          portfolio: resumeInformation[sections.basicInfo].detail?.portfolio,
+          userCurrentTitle: resumeInformation[sections.basicInfo].detail.title,
+          carrierObjective: resumeInformation[sections.basicInfo].detail.carrierObjective,
+          github: resumeInformation[sections.basicInfo].detail.github,
+          linkedin: resumeInformation[sections.basicInfo].detail.linkedin,
+          achievements: resumeInformation[sections.achievement].details,
+          education: resumeInformation[sections.education].details,
+          projects: resumeInformation[sections.project].details,
+          skills: resumeInformation[sections.skills].details,
+          workExperience: resumeInformation[sections.workExp].details,
+          summary: resumeInformation[sections.summary].detail,
+          other: resumeInformation[sections.other].detail
+        }
+        await axios.post('/api/userDetails/saveResumeData', values)
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      })
     }
   }
 
@@ -153,10 +187,10 @@ const ResumeContextProvider = (props) => {
         setResumeInformation,
         resumeInformationCopy,
         saveOnSessionStorage,
-        clearAllDetails
+        clearAllDetails,
+        saveResumeData
       }}
     >
-      {/* This refers to the children that this provider/components wraps. */}
       {props.children}
     </ResumeContext.Provider>
   );

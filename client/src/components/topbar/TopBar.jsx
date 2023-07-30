@@ -22,8 +22,9 @@ const Navbar = () => {
     <nav className={style.navbar}>
       <div className={style.container}>
         <div className={style.logo}>
-          {/* <Brand /> */}
-          <img src={logo} alt="logo" className={style.img2} />
+          <NavLink to="/">
+            <img src={logo} alt="logo" className={style.img2} />
+          </NavLink>
         </div>
         <div className={style.menu_icon} onClick={handleShowNavbar}>
           {showNavbar ? <CloseIcon /> : <MenuIcon />}
@@ -56,10 +57,7 @@ const Navbar = () => {
               </> :
               <>
                 <li>
-                  <NavLink className={style.login} onClick={() => { setSignup(false) }} to="/login">Log In</NavLink>
-                </li>
-                <li>
-                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} onClick={() => { setSignup(true) }} to="/login">Sign Up</NavLink>
+                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} onClick={() => { setSignup(true) }} to="/login">Log In</NavLink>
                 </li>
               </>
             }

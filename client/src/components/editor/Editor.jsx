@@ -10,9 +10,11 @@ import styles from "./editor.module.css";
 
 function Editor() {
 
-    const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage } = useContext(ResumeContext);
+    const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage, saveResumeData } = useContext(ResumeContext);
     const [isNewActive, setIsNewActive] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth);
+    const [callSave, setCallSave] = useState(0)
+
 
     const [activeSectionKey, setActiveSectionKey] = useState(
         Object.keys(sections)[0]
@@ -48,11 +50,21 @@ function Editor() {
         };
     }, []);
 
+
     //Save Info on session Storage
     useEffect(() => {
         console.log(resumeInformation)
         saveOnSessionStorage();
     }, [resumeInformation, saveOnSessionStorage])
+
+    
+    //Save Info on DataBase
+    useEffect(() => {
+        if(callSave !== 0){
+            saveResumeData();
+        }
+    }, [callSave])
+
 
     //new button should be disabled or not
     useEffect(() => {
@@ -300,6 +312,7 @@ function Editor() {
                 break;
             }
         }
+        setCallSave(callSave+1)
     };
 
     const handleAddNew = () => {
@@ -705,7 +718,6 @@ function Editor() {
                                     </p>
                                 </div>
                             ) : ""
-
                     }
                     {
                         activeInformation?.details &&

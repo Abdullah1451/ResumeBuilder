@@ -20,15 +20,18 @@
     "html2pdf.js": "^0.10.1",
     "libphonenumber-js": "^1.7.50",
     "nodemon": "^2.0.22",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.2",
     "react-facebook-login": "^4.1.1",
     "react-feather": "^2.0.10",
     "react-github-login": "^1.0.3",
     "react-hook-form": "^5.4.1",
+    "react-linkedin-login": "^1.0.4",
+    "react-linkedin-login-oauth2": "^2.0.1",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "^3.4.1",
-    "react-to-print": "^2.14.13"
+    "react-scripts": "^5.0.1",
+    "react-to-print": "^2.14.13",
+    "react-toastify": "^9.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

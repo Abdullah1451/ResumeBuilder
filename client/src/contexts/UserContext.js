@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { useGoogleLogin, googleLogout } from '@react-oauth/google';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Context = React.createContext()
@@ -43,6 +45,18 @@ export function UserContext({ children }) {
         return encryptedData;
     };
 
+    const showErrorToast = (message) => {
+        toast.error(message, {
+            position: 'top-right',
+            autoClose: 3000,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            hideProgressBar: false,
+            theme: "colored"
+        });
+    };
+
 
     //MANUAL AUTH
     const login = async (google_login = false) => {
@@ -50,8 +64,6 @@ export function UserContext({ children }) {
             google_login: google_login,
             userData: user.userData,
         }
-        console.log("values")
-        console.log(values)
         try {
             const logged_user = await axios.post("/api/userlogin/login", values);
             console.log("logged_user")
@@ -85,12 +97,13 @@ export function UserContext({ children }) {
                     }
                 })
                 console.log("Login Successfull....")
-                // window.location.replace("/templates");
+                window.location.replace("/templates");
             }
             else {
                 register();
             }
         } catch (err) {
+            showErrorToast(err.response.data)
             console.log(err.message)
             console.log(err.response.data)
             console.log("Login failed.");
@@ -99,13 +112,15 @@ export function UserContext({ children }) {
 
 
     const register = async () => {
-        console.log("values")
-        console.log(user)
         try {
-            const registered_user = await axios.post("/api/userlogin/register", user.userData);
-            console.log("Registeration successfull.");
-            console.log(registered_user)
+            await axios.post("/api/userlogin/register", user.userData)
+                .then((response) => {
+                    if (response.data) {
+                        login(true)
+                    }
+                })
         } catch (err) {
+            showErrorToast(err.response.data)
             console.log(err.message)
             console.log(err.response.data)
             console.log("Registeration failed.");
@@ -134,7 +149,7 @@ export function UserContext({ children }) {
                                 id: String(res.data.id),
                                 name: res.data.given_name,
                                 locale: res.data.locale,
-                                porfilePicture: res.data.picture,
+                                profilePicture: res.data.picture,
                                 verifiedEmail: res.data.verified_email,
                             }
                         }))
@@ -169,7 +184,7 @@ export function UserContext({ children }) {
                         isGuestUser: response.data.is_guest_user,
                         likes: response.data.likes.data,
                         name: response.data.name,
-                        porfilePicture: JSON.stringify(response.data.picture.data),
+                        profilePicture: JSON.stringify(response.data.picture.data),
                         posts: response.data.posts.data,
                     }
                 }))
@@ -185,9 +200,9 @@ export function UserContext({ children }) {
 
     //GITHUB AUTH
     const githubLoginSuccess = async (res) => {
-        async function getAccessToken() {
+        async function getGithubAccessToken() {
             try {
-                await axios.get("api/userlogin/getAccessToken?code=" + res.code)
+                await axios.get("api/userlogin/getGithubAccessToken?code=" + res.code)
                     .then((response) => {
                         if (response.data.accessToken) {
                             githubGetUserEmail(response.data.accessToken)
@@ -199,7 +214,7 @@ export function UserContext({ children }) {
                 console.log(error)
             }
         }
-        getAccessToken()
+        getGithubAccessToken()
     };
 
 
@@ -290,6 +305,46 @@ export function UserContext({ children }) {
     };
 
 
+    //LINKEDIN AUTH
+    const linkedinLoginSuccess = async (code) => {
+        async function getLinkedinAccessTokenAndUserData() {
+            try {
+                await axios.get("api/userlogin/getLinkedinAccessTokenAndUserData?code=" + code)
+                    .then((response) => {
+                        console.log("Access Code")
+                        console.log(response.data)
+                        setUser((prevState) => ({
+                            ...prevState,
+                            userData: {
+                                ...prevState.userData,
+                                email: response.data.email,
+                                loginFrom: 'linkedin',
+                                id: String(response.data.id),
+                                name: response.data.localizedFirstName + response.data.localizedLastName,
+                                firstName: response.data.localizedFirstName,
+                                lastName: response.data.localizedLastName,
+                                locale: response.data.firstName.preferredLocale.language,
+                                location: response.data.firstName.preferredLocale.country,
+                                linkedinProfilePicture: response.data.profilePicture['displayImage~'],
+                                verifiedEmail: true,
+                            }
+                        }))
+                    })
+                    .then(() => {
+                        setIsStateSet(isStateSet + 1)
+                    })
+                    .catch((err) => { console.log(err) })
+            } catch (error) {
+                console.log("ERROR")
+                console.log(error)
+            }
+        }
+        getLinkedinAccessTokenAndUserData()
+    };
+
+
+
+    //LOGOUT
     const logout = () => {
         if (user.google_login) {
             googleLogout()
@@ -328,7 +383,9 @@ export function UserContext({ children }) {
             responseFacebook,
             githubLoginFailure,
             githubLoginSuccess,
-            encryptText
+            linkedinLoginSuccess,
+            encryptText,
+            showErrorToast
         }}>
             {children}
         </Context.Provider>
