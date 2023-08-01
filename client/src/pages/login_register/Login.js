@@ -31,7 +31,6 @@ function Login() {
 		register, githubLoginFailure, githubLoginSuccess, linkedinLoginSuccess,
 		encryptText, showErrorToast } = useUserContext();
 
-
 	//---------------LINKEDIN BUTTON----------------------------------------
 	const { linkedInLogin } = useLinkedIn({
 		clientId: `${LINKEDIN_CLIENT_ID}`,
@@ -159,52 +158,6 @@ function Login() {
 													</button>
 												</div>
 											</div>
-
-											<hr style={{
-												width: "85%",
-												margin: "auto",
-											}} />
-
-											<div className={style.signIn_option}>
-												<div className={style.option_btn} id="google_signIn">
-													<button className={`${style.google_btn} ${style.btn}`} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
-												</div>
-
-												<div className={`${style.option_btn}`} id="facebook_signIn">
-													<FacebookLogin
-														appId="846682357045128"
-														autoLoad={false}
-														fields="name,email,picture"
-														textButton="Facebook"
-														size='small'
-														cssClass={`${style.facebook_btn} ${style.btn}`}
-														icon={`${style.option_border} fa-brands fa-facebook-f`}
-														callback={responseFacebook}
-													/>
-												</div>
-
-												<div className={style.option_btn} id="github_signIn">
-													<GitHubLogin
-														clientId={GITHUB_CLIENT_ID}
-														redirectUri="http://localhost:3000/login"
-														onSuccess={githubLoginSuccess}
-														onFailure={githubLoginFailure}
-														buttonText='Github'
-														className={`${style.github_btn} ${style.btn}`}
-													>
-														<span className={style.option_border}><GitHubIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Github</span>
-													</GitHubLogin>
-												</div>
-
-												<div className={style.option_btn} id="github_signIn">
-													<button className={`${style.linkedin_btn} ${style.btn}`} onClick={(e) => {
-														e.preventDefault();
-														linkedInLogin();
-													}}>
-														<span className={style.option_border}><LinkedInIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>LinkedIn</span>
-													</button>
-												</div>
-											</div>
 										</div>
 									) : (
 										<div>
@@ -238,55 +191,54 @@ function Login() {
 													</button>
 												</div>
 											</div>
-
-											<hr style={{
-												width: "85%",
-												margin: "auto",
-											}} />
-
-											<div className={style.signIn_option}>
-												<div className={style.option_btn} id="google_signIn">
-													<button className={`${style.google_btn} ${style.btn}`} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
-												</div>
-
-												<div className={`${style.option_btn}`} id="facebook_signIn">
-													<FacebookLogin
-														appId="846682357045128"
-														autoLoad={false}
-														fields="name,email,picture"
-														textButton="Facebook"
-														size='small'
-														cssClass={`${style.facebook_btn} ${style.btn}`}
-														icon={`${style.option_border} fa-brands fa-facebook-f`}
-														callback={responseFacebook}
-													/>
-												</div>
-
-												<div className={style.option_btn} id="github_signIn">
-													<GitHubLogin
-														clientId={GITHUB_CLIENT_ID}
-														redirectUri="http://localhost:3000/login"
-														onSuccess={githubLoginSuccess}
-														onFailure={githubLoginFailure}
-														buttonText='Github'
-														className={`${style.github_btn} ${style.btn}`}
-													>
-														<span className={style.option_border}><GitHubIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Github</span>
-													</GitHubLogin>
-												</div>
-
-												<div className={style.option_btn} id="github_signIn">
-													<button className={`${style.linkedin_btn} ${style.btn}`} onClick={(e) => {
-														e.preventDefault();
-														linkedInLogin();
-													}}>
-														<span className={style.option_border}><LinkedInIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>LinkedIn</span>
-													</button>
-												</div>
-											</div>
 										</div>
 									)
 								}
+								<hr style={{
+									width: "85%",
+									margin: "auto",
+								}} />
+
+								<div className={style.signIn_option}>
+									<div className={style.option_btn} id="google_signIn">
+										<button className={`${style.google_btn} ${style.btn}`} onClick={() => googleLogin()}><span className={style.option_border}><GoogleIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Google</span></button>
+									</div>
+
+									<div className={`${style.option_btn}`} id="facebook_signIn">
+										<FacebookLogin
+											appId="846682357045128"
+											autoLoad={false}
+											fields="name,email,picture"
+											textButton="Facebook"
+											size='small'
+											cssClass={`${style.facebook_btn} ${style.btn}`}
+											icon={`${style.option_border} fa-brands fa-facebook-f`}
+											callback={responseFacebook}
+										/>
+									</div>
+
+									<div className={style.option_btn} id="github_signIn">
+										<GitHubLogin
+											clientId={GITHUB_CLIENT_ID}
+											redirectUri="http://localhost:3000/login"
+											onSuccess={githubLoginSuccess}
+											onFailure={githubLoginFailure}
+											buttonText='Github'
+											className={`${style.github_btn} ${style.btn}`}
+										>
+											<span className={style.option_border}><GitHubIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>Github</span>
+										</GitHubLogin>
+									</div>
+
+									<div className={style.option_btn} id="github_signIn">
+										<button className={`${style.linkedin_btn} ${style.btn}`} onClick={(e) => {
+											e.preventDefault();
+											linkedInLogin();
+										}}>
+											<span className={style.option_border}><LinkedInIcon style={{ fontSize: "28px", paddingTop: "3px" }} /></span> <span className={style.option_name}>LinkedIn</span>
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

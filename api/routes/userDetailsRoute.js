@@ -8,7 +8,37 @@ app.post("/saveResumeData", async (req, res) => {
       email: req.body.email,
     });
     if (result) {
-      result = req.body;
+      result.name = req.body.name || result.name;
+      result.mobileNumber = req.body.mobileNumber || result.mobileNumber;
+      result.userCurrentTitle = req.body.userCurrentTitle || result.userCurrentTitle;
+      result.registeredUser = req.body.registeredUser || result.registeredUser;
+      result.github = req.body.github || result.github;
+      result.linkedin = req.body.linkedin || result.linkedin;
+      result.summary = req.body.summary || result.summary;
+      result.other = req.body.other || result.other;
+      result.basicInfoTitle = req.body.basicInfoTitle || result.basicInfoTitle;
+      result.achievementsTitle = req.body.achievementsTitle || result.achievementsTitle;
+      result.educationTitle = req.body.educationTitle || result.educationTitle;
+      result.projectsTitle = req.body.projectsTitle || result.projectsTitle;
+      result.skillsTitle = req.body.skillsTitle || result.skillsTitle;
+      result.workExperienceTitle = req.body.workExperienceTitle || result.workExperienceTitle;
+      result.summaryTitle = req.body.summaryTitle || result.summaryTitle;
+      result.otherTitle = req.body.otherTitle || result.otherTitle;
+      if (req.body.workExperience.length > 0) {
+        result.workExperience = req.body.workExperience
+      }
+      if (req.body.achievements.length > 0) {
+        result.achievements = req.body.achievements
+      }
+      if (req.body.education.length > 0) {
+        result.education = req.body.education;
+      }
+      if (req.body.projects.length > 0) {
+        result.projects = req.body.projects
+      }
+      if (req.body.skills.length > 0) {
+        result.skills = req.body.skills
+      }
       result.save();
       res.send('UPDATED SUCCESSFULLY')
     }
@@ -26,13 +56,13 @@ app.post("/saveResumeData", async (req, res) => {
 app.get("/getResumeData", async (req, res) => {
   try {
     const result = await UserDetails.findOne({
-      email: req.body.email,
+      email: req.query.email,
     });
     if (result) {
       res.send(result)
     }
     else {
-      res.status(500).json("No Information Available!");
+      res.send(null)
     }
   }
   catch (error) {

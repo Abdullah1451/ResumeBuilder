@@ -1,8 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import Button from "@material-ui/core/Button";
 import Editor from '../../components/editor/Editor'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import { ResumeContext } from "../../contexts/ResumeContext";
+import { useResumeContext } from "../../contexts/ResumeContext";
 import ReactToPrint from 'react-to-print';
 import Paper from '../../components/Paper/Paper';
 
@@ -10,7 +10,7 @@ import style from './userDetails.module.css'
 
 
 function UserDetails() {
-    const { control, addFakeData, removeFakeData, clearAllDetails } = useContext(ResumeContext);
+    const { control, addFakeData, removeFakeData, clearAllDetails } = useResumeContext();
 
     const componentRef = useRef();
 

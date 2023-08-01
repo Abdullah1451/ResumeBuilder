@@ -4,7 +4,7 @@ import TopBar from "../components/topbar/TopBar";
 // import Register from "../pages/login_register/Register";
 import Login from "../pages/login_register/Login";
 import Home from "../pages/home/Home";
-import ResumeContextProvider from "../contexts/ResumeContext";
+import { ResumeContextProvider } from "../contexts/ResumeContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { TemplateProvider } from '../contexts/TemplateContext';
 import { UserContext } from '../contexts/UserContext';

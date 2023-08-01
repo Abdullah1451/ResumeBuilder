@@ -4,6 +4,7 @@ import axios from "axios";
 import CryptoJS from 'crypto-js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useResumeContext } from './ResumeContext';
 
 
 const Context = React.createContext()
@@ -13,6 +14,8 @@ export function useUserContext() {
 }
 
 export function UserContext({ children }) {
+
+    const { getUserResumeData } = useResumeContext()
     const [signup, setSignup] = useState(false)
     const [isStateSet, setIsStateSet] = useState(0)
     const [user, setUser] = useState({})
@@ -25,6 +28,8 @@ export function UserContext({ children }) {
         if (userData) {
             delete userData.loginStatus;
             delete userData.google_login;
+            if(loginStatus)
+                getUserResumeData(userData.email)
         }
         setUser((prevState) => ({
             google_login,
@@ -33,7 +38,7 @@ export function UserContext({ children }) {
         }))
     }, [])
 
-
+    
     useEffect(() => {
         if (isStateSet > 0)
             login(true)
@@ -96,8 +101,9 @@ export function UserContext({ children }) {
                         ...logged_user.data
                     }
                 })
+                getUserResumeData(logged_user.data.email)
                 console.log("Login Successfull....")
-                window.location.replace("/templates");
+                // window.location.replace("/templates");
             }
             else {
                 register();

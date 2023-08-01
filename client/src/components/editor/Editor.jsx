@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "react-feather";
 import InputControl from "../inputControl/InputControl";
 import TextArea from "../textArea/TextArea";
+import { useResumeContext } from '../../contexts/ResumeContext';
+import { useUserContext } from '../../contexts/UserContext';
 
 
-//MY CONTEXT
-import { ResumeContext } from '../../contexts/ResumeContext';
 import styles from "./editor.module.css";
 
 function Editor() {
 
-    const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage, saveResumeData } = useContext(ResumeContext);
+    const { sections, resumeInformation, setResumeInformation, saveOnSessionStorage, saveResumeData } = useResumeContext();
+    const { user } = useUserContext();
     const [isNewActive, setIsNewActive] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth);
     const [callSave, setCallSave] = useState(0)
@@ -54,13 +55,14 @@ function Editor() {
     //Save Info on session Storage
     useEffect(() => {
         console.log(resumeInformation)
-        saveOnSessionStorage();
-    }, [resumeInformation, saveOnSessionStorage])
+        if (user.loginStatus)
+            saveOnSessionStorage();
+    }, [resumeInformation])
 
-    
+
     //Save Info on DataBase
     useEffect(() => {
-        if(callSave !== 0){
+        if (callSave !== 0) {
             saveResumeData();
         }
     }, [callSave])
@@ -186,7 +188,6 @@ function Editor() {
                         sectionTitle,
                     },
                 }));
-
                 break;
             }
 
@@ -312,7 +313,7 @@ function Editor() {
                 break;
             }
         }
-        setCallSave(callSave+1)
+        setCallSave(callSave + 1)
     };
 
     const handleAddNew = () => {
@@ -686,11 +687,12 @@ function Editor() {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                {Object.keys(sections)?.map((key) => (
+                {Object.keys(sections)?.map((key, index) => (
                     <div
                         className={`${styles.section} ${activeSectionKey === key ? styles.active : ""
                             }`}
-                        key={key}
+                        key={index}
+
                         onClick={() => setActiveSectionKey(key)}
                     >
                         {sections[key]}
@@ -726,7 +728,7 @@ function Editor() {
                                 <div
                                     className={`${styles.chip} ${activeDetailIndex === index ? styles.active : ""
                                         }`}
-                                    key={item.title + index}
+                                    key={index}
                                     onClick={() => setActiveDetailIndex(index)}
                                 >
                                     <p>

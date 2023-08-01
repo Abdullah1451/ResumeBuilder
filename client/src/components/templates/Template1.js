@@ -1,12 +1,11 @@
-import React, { forwardRef, useContext } from 'react'
-import { ResumeContext } from '../../contexts/ResumeContext';
+import React, { forwardRef } from 'react'
+import { useResumeContext } from '../../contexts/ResumeContext';
 import myTempStyle from './template1.module.css'
 import myFontStyle from './allTemplateCommon.module.css'
 
 const Template1 = forwardRef(function (props, ref) {
 
-    const { resumeInformation, sections } = useContext(ResumeContext);
-
+    const { resumeInformation, sections } = useResumeContext();
 
     return (
         <div ref={ref} className={myTempStyle['main-container']}>
@@ -71,9 +70,9 @@ const Template1 = forwardRef(function (props, ref) {
                                         {
                                             resumeInformation[sections.education].details.map((item, index) => {
                                                 return (
-                                                    <>
+                                                    <div key={index}>
                                                         <p> <b> {item.title}</b></p>
-                                                        <p className={myFontStyle.general_font_size} key={index}> {item.college} </p>
+                                                        <p className={myFontStyle.general_font_size}> {item.college} </p>
                                                         {item.startDate &&
                                                             <>
                                                                 <p className={myFontStyle.general_font_size}> <b> ({item.startDate}) - ({item.endDate}) </b> </p>
@@ -84,7 +83,7 @@ const Template1 = forwardRef(function (props, ref) {
                                                                 }} />
                                                             </>
                                                         }
-                                                    </>
+                                                    </div>
                                                 )
                                             })
                                         }
@@ -117,9 +116,9 @@ const Template1 = forwardRef(function (props, ref) {
                                     <div className="myTempStyle.experience">
                                         <h2 className={`${myFontStyle.heading_font_size} ${myTempStyle.subHeading}`}> {resumeInformation[sections.workExp].sectionTitle} </h2>
                                         {
-                                            resumeInformation[sections.workExp].details.map((item, key) => {
+                                            resumeInformation[sections.workExp].details.map((item, index) => {
                                                 return (
-                                                    <div key={key} style={{
+                                                    <div key={index} style={{
                                                         paddingRight: '10px',
                                                         marginBottom: '15px',
                                                         lineHeight: '1.5'

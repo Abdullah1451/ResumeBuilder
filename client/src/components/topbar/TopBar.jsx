@@ -57,7 +57,7 @@ const Navbar = () => {
               </> :
               <>
                 <li>
-                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} onClick={() => { setSignup(true) }} to="/login">Log In</NavLink>
+                  <NavLink className={`${!showNavbar && style.signup} ${showNavbar && style.login} `} onClick={() => { setSignup(false) }} to="/login">Log In</NavLink>
                 </li>
               </>
             }

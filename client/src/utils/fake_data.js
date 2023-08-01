@@ -80,15 +80,15 @@ const resume = {
     details: [
       {
         skill: "Java",
-        skillLevel: '8'
+        skillLevel: "8"
       },
       {
         skill: "MERN",
-        skillLevel: '6'
+        skillLevel: "7"
       },
       {
         skill: "Blockchain",
-        skillLevel: '4'
+        skillLevel: "3"
       },
     ],
   },
@@ -99,26 +99,16 @@ const resume = {
     details: [
       {
         title: "Tic Tac Toe",
-        overview: "Tic Tac Toe Is G.\n\
-          where voter can vote using there credential, and voter can see\n\
-          his/her vote."
+        overview: "Tic Tac Toe Is G.\nwhere voter can vote using there credential, and voter can see\nhis/her vote."
       },
       {
         title: "Voting System Using Blockchaoin",
-        overview: "Transparent voting system using Blockchain.\n\
-          where voter can vote using there credential, and voter can see\n\
-          his/her vote.\n\
-          Voters vote is immutable. Voter can vote only once.",
-        github: "https://github.com/Abdullah1451/Voting_Dapp_frontend\n\
-          https://github.com/Abdullah1451/Voting_Dapp_backend"
+        overview: "Transparent voting system using Blockchain.\nwhere voter can vote using there credential, and voter can see\nhis/her vote.\nVoters vote is immutable. Voter can vote only once.",
+        github: "https://github.com/Abdullah1451/Voting_Dapp_frontend\nhttps://github.com/Abdullah1451/Voting_Dapp_backend"
       },
       {
         title: "STEGANOGRAPHY USING LSB ALGORITHM (JAVA)",
-        overview: "In this application we can hide a image, text or mp3 file in a\n\
-          image. In LSB (least Significant Bit) algorithm we take value\n\
-          of a pixel convert it into binary string then change its least\n\
-          bits to bits of message. In this we can set password also so no\n\
-          one accept the receiver can see the message.",
+        overview: "In this application we can hide a image, text or mp3 file in a\nimage. In LSB (least Significant Bit) algorithm we take value\nof a pixel convert it into binary string then change its least\nbits to bits of message. In this we can set password also so no\none accept the receiver can see the message.",
         github: "https://github.com/Abdullah1451/Steganography-Project"
       },
     ],

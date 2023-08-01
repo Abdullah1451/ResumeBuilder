@@ -1,5 +1,5 @@
-import React, { forwardRef, useContext } from 'react'
-import { ResumeContext } from '../../contexts/ResumeContext';
+import React, { forwardRef } from 'react'
+import { useResumeContext } from '../../contexts/ResumeContext';
 
 import myTempStyle from './template2.module.css'
 import myFontStyle from './allTemplateCommon.module.css'
@@ -8,7 +8,7 @@ import myFontStyle from './allTemplateCommon.module.css'
 
 const Template2 = forwardRef(function (props, ref) {
 
-    const { resumeInformation, sections } = useContext(ResumeContext);
+    const { resumeInformation, sections } = useResumeContext();
 
     return (
         <div ref={ref} >
