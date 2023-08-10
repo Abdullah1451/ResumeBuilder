@@ -97,6 +97,9 @@ app.post("/login", async (req, res) => {
                 await user.save(); // Save the updated document to the database
                 res.send(user);
             }
+            else if (!user?.password && req.body.userData.loginFrom !== 'web'){
+                res.send(user);
+            }
             else {
                 res.status(401).json("Wrong Password!");
             }

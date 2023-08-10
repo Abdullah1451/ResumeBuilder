@@ -12,6 +12,7 @@ export const ResumeContextProvider = ({ children }) => {
 
   const [resumeInformationCopy, setResumeInformationCopy] = useState(null)
   const [control, setControl] = useState(false);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
   //FAKE DATA MAINTAIN
@@ -78,7 +79,7 @@ export const ResumeContextProvider = ({ children }) => {
 
   const saveResumeData = async () => {
     if (!control && resumeInformation[sections.basicInfo].detail.email) {
-      await axios.post("/api/userlogin/isRegistered", { email: resumeInformation[sections.basicInfo].detail.email })
+      await axios.post(backendUrl + "/api/userlogin/isRegistered", { email: resumeInformation[sections.basicInfo].detail.email })
         .then(async (response) => {
           const values = {
             email: resumeInformation[sections.basicInfo].detail.email,
@@ -106,7 +107,7 @@ export const ResumeContextProvider = ({ children }) => {
             summaryTitle: resumeInformation[sections.summary].sectionTitle,
             otherTitle: resumeInformation[sections.other].sectionTitle,
           }
-          await axios.post('/api/userDetails/saveResumeData', values)
+          await axios.post(backendUrl + '/api/userDetails/saveResumeData', values)
             .then((response) => {
               console.log(response.data)
             })
@@ -126,7 +127,7 @@ export const ResumeContextProvider = ({ children }) => {
 
   const getUserResumeData = async (loggedUserEmail) => {
     try {
-      await axios.get("/api/userDetails/getResumeData?email=" + loggedUserEmail)
+      await axios.get(backendUrl + "/api/userDetails/getResumeData?email=" + loggedUserEmail)
         .then((response) => {
           if (response.data) {
             setResumeInformation((prev) => ({

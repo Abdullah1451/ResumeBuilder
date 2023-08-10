@@ -19,7 +19,7 @@ export function UserContext({ children }) {
     const [signup, setSignup] = useState(false)
     const [isStateSet, setIsStateSet] = useState(0)
     const [user, setUser] = useState({})
-
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         let userData = JSON.parse(localStorage.getItem('user'))
@@ -38,7 +38,7 @@ export function UserContext({ children }) {
         }))
     }, [])
 
-    
+
     useEffect(() => {
         if (isStateSet > 0)
             login(true)
@@ -70,7 +70,7 @@ export function UserContext({ children }) {
             userData: user.userData,
         }
         try {
-            const logged_user = await axios.post("/api/userlogin/login", values);
+            const logged_user = await axios.post(backendUrl + "/api/userlogin/login", values);
             console.log("logged_user")
             console.log(logged_user)
             //AFTER LOGIN
@@ -103,7 +103,7 @@ export function UserContext({ children }) {
                 })
                 getUserResumeData(logged_user.data.email)
                 console.log("Login Successfull....")
-                // window.location.replace("/templates");
+                window.location.replace("/templates");
             }
             else {
                 register();
@@ -119,7 +119,7 @@ export function UserContext({ children }) {
 
     const register = async () => {
         try {
-            await axios.post("/api/userlogin/register", user.userData)
+            await axios.post(backendUrl + "/api/userlogin/register", user.userData)
                 .then((response) => {
                     if (response.data) {
                         login(true)
@@ -208,7 +208,7 @@ export function UserContext({ children }) {
     const githubLoginSuccess = async (res) => {
         async function getGithubAccessToken() {
             try {
-                await axios.get("api/userlogin/getGithubAccessToken?code=" + res.code)
+                await axios.get(backendUrl + "/api/userlogin/getGithubAccessToken?code=" + res.code)
                     .then((response) => {
                         if (response.data.accessToken) {
                             githubGetUserEmail(response.data.accessToken)
@@ -315,7 +315,7 @@ export function UserContext({ children }) {
     const linkedinLoginSuccess = async (code) => {
         async function getLinkedinAccessTokenAndUserData() {
             try {
-                await axios.get("api/userlogin/getLinkedinAccessTokenAndUserData?code=" + code)
+                await axios.get("/api/userlogin/getLinkedinAccessTokenAndUserData?code=" + code)
                     .then((response) => {
                         console.log("Access Code")
                         console.log(response.data)

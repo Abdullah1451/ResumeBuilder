@@ -17,6 +17,7 @@
     "antd": "^5.4.7",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
     "html2pdf.js": "^0.10.1",
     "libphonenumber-js": "^1.7.50",
     "nodemon": "^2.0.22",
@@ -54,5 +55,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5002/"
+  "proxy": "http://ec2-44-201-102-51.compute-1.amazonaws.com:5002"
 }
