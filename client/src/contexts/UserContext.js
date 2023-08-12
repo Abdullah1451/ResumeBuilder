@@ -19,7 +19,7 @@ export function UserContext({ children }) {
     const [signup, setSignup] = useState(false)
     const [isStateSet, setIsStateSet] = useState(0)
     const [user, setUser] = useState({})
-    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
     useEffect(() => {
         let userData = JSON.parse(localStorage.getItem('user'))

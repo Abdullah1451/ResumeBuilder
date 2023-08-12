@@ -12,7 +12,7 @@ export const ResumeContextProvider = ({ children }) => {
 
   const [resumeInformationCopy, setResumeInformationCopy] = useState(null)
   const [control, setControl] = useState(false);
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
 
 
   //FAKE DATA MAINTAIN
